@@ -1,0 +1,30 @@
+.header {
+     position: fixed;
+     width: 100%;    
+     top: 0;
+     left: 0;
+     z-index: 1000; 
+     box-shadow: 5px 3px 10px rgba(146, 153, 158, 3);
+     .header-view {
+       height: fit-content;  
+       background-color: #fff;
+       display: flex;
+       padding-left: 20px;
+       .loge-view{
+        display: flex;
+  
+        .logo-content{
+          font-size: 20px;
+          font-weight:600;
+          color: #1049c4;
+        }
+          img{
+          width: 250px;
+          height: 80px;
+       }
+       } 
+     }
+   
+    
+   }
+   
