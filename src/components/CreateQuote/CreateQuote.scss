@@ -1,0 +1,118 @@
+.confirmation-modal {
+  .log-add-newAddress {
+    background-color: #fff;
+    border-radius: 30px;
+    width: 600px;
+    height: auto;
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+
+    &-tittel {
+      font-size: 20px;
+      font-weight: 500;
+      padding: 5px 10px;
+    }
+
+    .add-FullName-PhoneNumber {
+      display: flex;
+      width: 100%;
+      padding: 10px;
+      justify-content: space-between;
+    }
+
+    .FullName-logAdd {
+      position: relative;
+      width: 50%;
+
+
+      .InputFullName {
+        width: 86%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1.5px solid #089ad8;
+
+        &:focus + label {
+          color: #8b9ca0;
+        }
+
+        &:valid {
+          border: 2px solid #2c3333;
+        }
+
+        &:valid + label {
+          top: -9.5px;
+          background-color: #fff;
+          font-size: 12px;
+          color: #333;
+        }
+      }
+
+      label {
+        position: absolute;
+        top: 7px;
+        left: 13px;
+        pointer-events: none;
+        transition: 0.1s;
+        color: #09c7e9;
+      }
+    }
+
+    .addDetail-logAdd {
+      position: relative;
+      width: 100%;
+      padding:7px 10px;
+      .InputFullAdd {
+        border: 1.5px solid #089ad8;
+        width: 93%;
+        padding: 10px;
+        border-radius: 4px;
+        &:focus + .myInputAdd_L {
+          color: #8b9ca0;
+        }
+
+        &:valid {
+          border: 2px solid #2c3333;
+        }
+
+        &:valid + .myInputAdd_L {
+          top: 1px;
+          background-color: #fff;
+          font-size: 12px;
+          color: #333;
+        }
+      }
+      .myInputAdd_L {
+        position: absolute;
+        top: 13px;
+        left: 25px;
+        pointer-events: none;
+        transition: 0.1s;
+        color: #09c7e9;
+      }
+    }
+
+    .Address-log-add {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .height-log {
+      height: 150px;
+      padding: 10px;
+      .date_quote{
+        padding:10px 0;
+      }
+    }
+
+    #massage-er-input {
+      color: red;
+      padding:5px 10px;
+
+    }
+
+  }
+  .cf-ad-bt-bottom{
+    padding:0px 10px;
+  }
+}

@@ -1,0 +1,168 @@
+.login_view {
+  width: auto;
+  height: auto;
+  min-height: 400px;
+  padding: 20px 10px 24px;
+  background: #fdfdfd;
+  border-radius: 7%;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+  .close_logo {
+    width: 440px;
+    display: flex;
+    justify-content: space-between;
+    .login_view_logo {
+      width: 70%;
+      height: auto;
+      display: flex;
+
+      justify-content: end;
+      align-items: center;
+
+      .logo_view {
+        width: 15%;
+        margin-right: 20%;
+      }
+    }
+    .login_view_close {
+      width: auto;
+      height: 34px;
+      border-radius: 50%;
+      padding: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      .close_click {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 34px;
+        font-weight: 600;
+      }
+      &:hover {
+        background: #b8c2ce;
+      }
+    }
+  }
+  .login_Welcome {
+    display: flex;
+    padding: 15px 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(51, 51, 51);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+  }
+  .login_info {
+    width: 100%;
+    height: auto;
+    .login_input {
+      width: 100%;
+      .login_input_name {
+        padding: 0 22%;
+        margin-left: 1%;
+        text-align: left;
+        font-size: var(--font-size-200);
+        margin: 5px 0;
+      }
+      .login_input_text {
+        position: relative;
+        padding: 0 19%;
+        width: auto;
+        .login_value[type="number"]::-webkit-inner-spin-button,
+        .login_value[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none !important;
+          margin: 0;
+        }
+        .login_value {
+          width: 87%;
+          display: 1;
+          text-align: left;
+          align-items: center;
+          border-radius: 18px;
+          background-color: rgb(255, 255, 255);
+          padding: 15px 17px;
+          font-size: 14px;
+          box-shadow: rgba(86, 98, 106, 0.45) 0px 2px 7px;
+          border: 2px solid #c9d2d5;
+        }
+      }
+      .password-toggle-icon {
+        position: absolute;
+        top: 50%;
+        right: 100px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #777;
+        transition: color 0.3s ease-in-out;
+        border: none;
+        background-color: #ffffff00;
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+    .forgot_pass {
+      padding: 0 22%;
+      margin-top: 5px;
+    }
+  }
+  .login_btn {
+    width: auto;
+    padding: 0 19%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn_log_user {
+      margin-top: 20px;
+      width: 100%;
+      border: none;
+      padding: 12px 0;
+      background-color: #032138;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: rgba(127, 183, 223, 0.45) 0px 0px 2px 2px;
+      transition: 0.1s ease-in;
+      &:active {
+        scale: 1.03;
+      }
+    }
+    .btn_log_gg {
+      width: 100%;
+      border: none;
+      padding: 12px 0;
+      background-color: #f9f9fa;
+      color: #090909;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 18px;
+      cursor: pointer;
+      display: flex;
+      box-shadow: rgba(39, 156, 234, 0.45) 0px 0px 2px 1.5px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      &:active {
+        scale: 1.03;
+      }
+      .btn_log_gg_logo {
+        margin-left: 10px;
+        width: 20px;
+        height: auto;
+      }
+    }
+  }
+  .or_login {
+    margin: 5px 0;
+    text-align: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+}

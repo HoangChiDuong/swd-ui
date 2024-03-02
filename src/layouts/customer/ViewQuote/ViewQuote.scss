@@ -1,0 +1,102 @@
+.quote_page {
+  height: auto;
+  padding: 30px 13%;
+  display: flex;
+  flex-direction: column;
+  .quote_view {
+    position: relative;
+    width: 100%;
+    border-radius: 13px;
+    min-height: 83vh;
+    max-height: 83vh;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 10px 4px rgb(182, 189, 192);
+    margin-bottom: 20px;
+    background-color: #f0f5f78c;
+    .quote_status {
+      position: sticky;
+      left: 0;
+      top: 0;
+      width: 98.3%;
+      font-size: 18px;
+      font-weight: 500;
+      background-color: #f0f5f7;
+      padding: 10px 10px;
+      border-radius: 13px;
+      box-shadow: 0px 0px 7px 1px rgb(183, 194, 199);
+    }
+    .quote_item_view {
+      //margin-top: 60px;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .quote_item {
+        width: 91%;
+        border-radius: 33px;
+        padding: 10px 15px;
+        box-shadow: 0px 0px 7px 1px rgb(183, 194, 199);
+        margin: 10px 0px;
+        transition: 0.3s ease-out;
+        cursor: pointer;
+        &:hover {
+          scale: 1.007;
+          box-shadow: 0px 0px 6px 4px rgb(183, 194, 199);
+        }
+        .quote_item_1 {
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          .quote_item_cate {
+            display: flex;
+            font-weight: 500;
+            color: #032138;
+            .quote_item_status {
+              margin-left: 10px;
+              font-weight: 500;
+              color: #5d7b9c;
+            }
+          }
+          .quote_item_dateCreate {
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+        .quote_item_2 {
+      
+          display: flex;
+          width: auto;
+          padding: 15px 15px;
+          border-radius: 23px;
+          background-color: #baccd8;
+
+          .quote_item_productImg {
+            box-shadow: 0px 0px 6px 2px rgb(221, 229, 233);
+            background-color: #fff;
+            width: 80px;
+            height: 80px;
+            border-radius: 1dvb;
+          }
+          .quote_item_productName {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #032138;
+            &:hover {
+              scale: 1.02;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+  .quote_view::-webkit-scrollbar {
+    display: none;
+  }
+  .quote_view {
+    scrollbar-width: none;
+  }
+}

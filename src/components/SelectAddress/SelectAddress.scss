@@ -1,0 +1,35 @@
+.select-address-log1 {
+     
+     width: 32%;
+     position: relative;
+     color: #b93535;
+   
+     .select-address {
+       padding: 13px 10px;
+       width: 100%;
+       font-size: 17px;
+       border-radius: 4px;
+       align-items: center;
+       appearance: none;
+       border:2px solid #0d0d0e;
+       color: #0f0f0f;
+   
+       option {
+         background-color: #f5f0f0;
+         color: #000;
+         position: absolute;
+          &:hover {
+           background-color: #bd7e7e;
+         }
+       }
+   
+       /* Hide arrow icon in IE */
+
+       /* Scrollable options */
+       option {
+         overflow-y: scroll;
+         max-height: 10px;
+       }
+     }
+   }
+   
