@@ -1,0 +1,45 @@
+.product_item {
+  position: relative;
+  border-radius: 7px;
+  overflow: hidden;
+  cursor: pointer;
+  .img-real {
+    width: 415px;
+    height: 290px;
+    border-radius: 7px;
+    transition: 0.2s ease-in;
+  }
+
+  .product_blur {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.3);
+
+    .img-blur {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &:hover {
+    .img-real {
+      scale: 1.2;
+    }
+
+    .product_blur {
+      opacity: 1;
+
+      .img-blur {
+        scale: 1.4;
+        transition: 0.25s ease-in;
+      }
+    }
+  }
+}

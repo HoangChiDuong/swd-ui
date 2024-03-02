@@ -1,0 +1,50 @@
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(4, 30, 37, 0.644); /* Màu nền với độ mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.author_modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(4, 30, 37, 0.644); /* Màu nền với độ mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+.button_Cancel {
+  background-color: rgb(134, 160, 177);
+  color: white;
+  border: 2px solid #032138;
+  padding: 5px 30px;
+  border-radius: 5px;
+  font-size: 17px;
+  margin-right: 10px;
+  cursor: pointer;
+  &:hover {
+    scale: 1.05;
+  }
+}
+.button_Submit {
+  background-color: #032138;
+  border: 2px solid #032138;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-size: 17px;
+  margin-right: 10px;
+  cursor: pointer;
+  &:hover {
+    scale: 1.05;
+  }
+}

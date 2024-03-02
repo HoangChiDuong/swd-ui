@@ -1,0 +1,26 @@
+.home {
+  .view_cate_product {
+     width: 100%;
+     padding-top:2%;
+     .view_cate_show{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          .view_cate_show_img{
+               width: 90%;
+               height: 500px;
+          }
+     }
+     .home_product_cate {
+          display: grid;
+          justify-content: center;
+          grid-template-columns: repeat(3, 0.2fr);
+          border-radius: 7px;
+          gap: 15px; /* Khoảng cách giữa các sản phẩm */
+          .product_index {
+              border-radius: 7px;
+              width: 100%;
+          }
+        }
+  }
+}

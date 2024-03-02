@@ -9,10 +9,13 @@ import SunIcon from "./Admin/assets/icons/sun.svg";
 import BaseLayout from "./Admin/layout/BaseLayout";
 import { Dashboard, PageNotFound } from "./Admin/screens";
 import HomePage from "./layouts/home";
+
 import Customer from "./Admin/screens/customer/Customer";
 import AppStaff from "./Staff/AppStaff";
 import DashboardStaff from "./Staff/components/DashBoardStaff";
-
+import ViewProduct from "./layouts/customer/ViewProduct";
+import ViewProductCate from "./layouts/customer/ViewProductCate";
+import ViewQuotes from "./layouts/customer/ViewQuote";
 
 function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -30,9 +33,15 @@ function App() {
     <div>
       <Router>
         <Routes>
+
           <Route>
-            <Route path="/" element={<HomePage />}></Route>
-          </Route>
+           
+          <Route path="/" element={<Navigate to="/home" />} /> 
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/XemSanPham" element={<ViewProduct/>}/>
+          <Route path="/SanPhamTheoDanhMuc" element={<ViewProductCate/>}/>
+          <Route path="/TienTrinhYeuCau" element={<ViewQuotes/>}/>
+         </Route>
           <Route element={<AppStaff />}>
             <Route path="/staff/dashboard" element={<DashboardStaff />}></Route>
             <Route path=" /staff/assignment" element={<DashboardStaff />}></Route>
@@ -43,6 +52,7 @@ function App() {
             <Route path="/customer" element={<Customer />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
+
         </Routes>
 
         <button
