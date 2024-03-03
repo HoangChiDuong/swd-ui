@@ -1,5 +1,6 @@
 import React from "react";
 import { BiHome, BiBookAlt, BiTask } from "react-icons/bi";
+import { RiProductHuntLine } from "react-icons/ri";
 import "../styles/Sidebar.css";
 import logo from '~/assets/LogoSWD.png'
 const Sidebar = () => {
@@ -21,8 +22,8 @@ const Sidebar = () => {
                 </a>
             </div>
             <div className="menu--list">
-                <a href="/staff" className="item">
-                    <BiHome className="icon" />
+                <a href="/staff/product" className="item">
+                    <RiProductHuntLine className="icon" />
                     Product
                 </a>
             </div>

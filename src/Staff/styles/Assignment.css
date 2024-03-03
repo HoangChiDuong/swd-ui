@@ -1,0 +1,55 @@
+.assignment-container {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.content--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchTask {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: red;
+    /* Your existing error message styles */
+}
+
+/* Styles for Combobox */
+select {
+    padding: 8px 0;
+    font-size: 14px;
+    border: none;
+
+
+}
+
+/* Styles for Action Buttons */
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: #526d82;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #526d82;
+}
