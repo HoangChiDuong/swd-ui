@@ -15,7 +15,7 @@ import Login from "../Authors/Login";
 import SignUp from "../Authors/Signup";
 
 function Header({ indexCart }) {
-  const [accessToken, setAccessToken] = useState(1);
+  const [accessToken, setAccessToken] = useState(null);
   const [hoveredItem, setHoveredItem] = useState("null");
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
@@ -150,11 +150,11 @@ function Header({ indexCart }) {
         <div className="headContent-view">
           <div className="headSearch-view">
             <input
-             className="headSearch-content"
-             id="search_header"
-        
-             placeholder="Tìm Kiếm"
-             />
+              className="headSearch-content"
+              id="search_header"
+
+              placeholder="Tìm Kiếm"
+            />
             <button>
               <IoSearch className="icon-search" />
             </button>

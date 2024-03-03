@@ -1,0 +1,226 @@
+/* MainProducts CSS */
+
+.content-main {
+    padding: 30px 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.content-header .content-title {
+    margin-bottom: 0;
+}
+
+.btn-add {
+    background: #526d82;
+    padding: 12px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.product--container {
+
+    margin-bottom: 20px;
+    height: 550px;
+
+    overflow: auto;
+}
+
+.product--container-detail {
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+
+}
+
+.product-container {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 98%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-container:hover {
+    transform: scale(1.05);
+}
+
+.product--container-detail-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-wrap {
+    padding: 10px;
+}
+
+.product-container-detail-title {
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn--edit {
+    padding: 2px 12px;
+    background: #007bff;
+    border-radius: 10px;
+    /* Blue color, you can change this */
+}
+
+.btn-delete {
+    padding: 2px 12px;
+    background: #dc3545;
+    border-radius: 10px;
+
+    /* Red color, you can change this */
+}
+
+.btn a {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+}
+
+/* Delete Modal Styles */
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.delete-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.text-delete {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.productName-delete {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.button-delete button {
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-delete button:hover {
+    background-color: #c9302c;
+}
+
+.button-delete button.button-yes-delete {
+    background-color: #5bc0de;
+}
+
+.button-delete button.button-yes-delete:hover {
+    background-color: #46b8da;
+}
+
+.button-delete button,
+.button-delete button.button-yes-delete {
+    border: 1px solid #ccc;
+}
+
+/* Pagination Styles */
+.float-end {
+    float: right;
+    margin-top: 20px;
+}
+
+/* Additional Pagination Styles */
+
+.pagination-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-link:hover {
+    background-color: #f5f5f5;
+    color: #526d82;
+}
+
+.page-item.disabled .page-link {
+    color: #999;
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+}
+
+.page-item.active .page-link {
+    background-color: #526d82;
+    color: #fff;
+    border: 1px solid #526d82;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .pagination-navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-item {
+        margin: 5px 0;
+    }
+}

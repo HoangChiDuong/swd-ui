@@ -16,6 +16,10 @@ import DashboardStaff from "./Staff/components/DashBoardStaff";
 import ViewProduct from "./layouts/customer/ViewProduct";
 import ViewProductCate from "./layouts/customer/ViewProductCate";
 import ViewQuotes from "./layouts/customer/ViewQuote";
+import { Navigate } from "react-router-dom/dist";
+import Assignment from "./Staff/components/Assignment";
+import MainProducts from "./Staff/components/MainProduct";
+import CreateProduct from "./Staff/components/CreateProduct";
 
 function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -35,16 +39,18 @@ function App() {
         <Routes>
 
           <Route>
-           
-          <Route path="/" element={<Navigate to="/home" />} /> 
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/XemSanPham" element={<ViewProduct/>}/>
-          <Route path="/SanPhamTheoDanhMuc" element={<ViewProductCate/>}/>
-          <Route path="/TienTrinhYeuCau" element={<ViewQuotes/>}/>
-         </Route>
+
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/XemSanPham" element={<ViewProduct />} />
+            <Route path="/SanPhamTheoDanhMuc" element={<ViewProductCate />} />
+            <Route path="/TienTrinhYeuCau" element={<ViewQuotes />} />
+          </Route>
           <Route element={<AppStaff />}>
             <Route path="/staff/dashboard" element={<DashboardStaff />}></Route>
-            <Route path=" /staff/assignment" element={<DashboardStaff />}></Route>
+            <Route path="/staff/assignment" element={<Assignment />}></Route>
+            <Route path="/staff/product" element={<MainProducts />}></Route>
+            <Route path="/staff/product/create" element={<CreateProduct />}></Route>
 
           </Route>
           <Route element={<BaseLayout />}>
