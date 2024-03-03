@@ -150,11 +150,11 @@ function Header({ indexCart }) {
         <div className="headContent-view">
           <div className="headSearch-view">
             <input
-             className="headSearch-content"
-             id="search_header"
-        
-             placeholder="Tìm Kiếm"
-             />
+              className="headSearch-content"
+              id="search_header"
+
+              placeholder="Tìm Kiếm"
+            />
             <button>
               <IoSearch className="icon-search" />
             </button>
