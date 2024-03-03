@@ -37,7 +37,8 @@ const ViewProduct = () => {
     ],
     nameProduct: "Mẫu phòng khách đẹp đẳng cấp với gỗ Sồi tự nhiên",
     cateName: "Phòng Khách",
-    priceProduct:"30000000",
+    priceProduct: "30000000",
+    description : "",
     options: [
       {
         optionid: 1,
@@ -146,6 +147,14 @@ const ViewProduct = () => {
                   </tbody>
                 </table>
               </div>
+              <div className="price_viewer">
+                <div className="info_cate"> Giá Chỉ Từ :</div>
+                <div className="price_viewer_data">
+                  {numeral(productDetails.priceProduct).format("0,0")}
+                  <div className="price_type">vnđ</div>
+                </div>
+              </div>
+
               <div className="order">
                 <button className="addButton" onClick={() => addToCart()}>
                   <IoHeartSharp className="iconAdd" />
