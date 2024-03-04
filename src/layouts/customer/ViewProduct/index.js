@@ -35,6 +35,7 @@ const ViewProduct = () => {
           "Kệ tivi sát sàn, liên tiếp bàn thờ và kệ trang trí tạo thành hệ tủ có kích thước vừa khít với không gian phòng khách",
       },
     ],
+    
     nameProduct: "Mẫu phòng khách đẹp đẳng cấp với gỗ Sồi tự nhiên",
     cateName: "Phòng Khách",
     priceProduct: "30000000",

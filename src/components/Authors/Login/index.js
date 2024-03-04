@@ -30,7 +30,7 @@ const Login = ({ setShowLogin }) => {
     axios
       .post("https://localhost:7058/api/User/login", data)
       .then((response) => {
-        // Xử lý kết quả trả về từ API        console.log(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         // Xử lý lỗi nếu có

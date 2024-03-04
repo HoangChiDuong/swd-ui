@@ -16,7 +16,6 @@ import DashboardStaff from "./Staff/components/DashBoardStaff";
 import ViewProduct from "./layouts/customer/ViewProduct";
 import ViewProductCate from "./layouts/customer/ViewProductCate";
 import ViewQuotes from "./layouts/customer/ViewQuote";
-import { Navigate } from "react-router-dom/dist";
 import Assignment from "./Staff/components/Assignment";
 import MainProducts from "./Staff/components/MainProduct";
 import CreateProduct from "./Staff/components/CreateProduct";
