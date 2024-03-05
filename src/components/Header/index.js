@@ -15,7 +15,7 @@ import Login from "../Authors/Login";
 import SignUp from "../Authors/Signup";
 
 function Header({ indexCart }) {
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken, setAccessToken] = useState(1);
   const [hoveredItem, setHoveredItem] = useState("null");
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);

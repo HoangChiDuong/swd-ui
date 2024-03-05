@@ -102,7 +102,17 @@ const CreateProduct = () => {
     setImageFile([]);
     setFormErrors({});
   };
+const DataProduct = {
+  product:{
+    productName : ProductName,
+    price : Price,
+    category: CateId,
+    description : Decription,
+  },
+  images: ImageFile,
+  options: dataOption
 
+}
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -172,7 +182,7 @@ const CreateProduct = () => {
             </Link>
             <h2 className="content-title">Thêm Sản Phẩm</h2>
             <div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" onClick={console.log(DataProduct)}>
                 Thêm Sản Phẩm
               </button>
             </div>
@@ -321,7 +331,7 @@ const CreateProduct = () => {
               <div className="mb-4">
                 <label className="form-label mb-4">Thêm Ảnh Dự Án</label>
                 <div className="addImage-feedback">
-                  {showInputDesImg == true && (
+                  {showInputDesImg === true && (
                     <div className="detail_img">
                       <input
                         type="text"

@@ -35,11 +35,12 @@ const ViewProduct = () => {
           "Kệ tivi sát sàn, liên tiếp bàn thờ và kệ trang trí tạo thành hệ tủ có kích thước vừa khít với không gian phòng khách",
       },
     ],
-    
+
     nameProduct: "Mẫu phòng khách đẹp đẳng cấp với gỗ Sồi tự nhiên",
     cateName: "Phòng Khách",
     priceProduct: "30000000",
-    description : "",
+    description:
+      "Phòng khách trở nên thoáng mát, rộng rãi và tràn đầy sức sống khi sử dụng lối thiết kế không gian mở như hệ thống cửa kính kết hợp rèm cửa điều chỉnh ánh sáng một cách linh hoạt.",
     options: [
       {
         optionid: 1,
@@ -168,7 +169,14 @@ const ViewProduct = () => {
               </div>
             </div>
           </div>
+
           <div className="product_introduce">
+            <div className="title_des">
+              Thiết Kế Nội Thất {productDetails.cateName}
+            </div>
+            <div className="description_product">
+              {productDetails.description}
+            </div>
             <div className="intro_image">
               {productDetails.image.map((image, index) => (
                 <div key={index} className="child_intro">
