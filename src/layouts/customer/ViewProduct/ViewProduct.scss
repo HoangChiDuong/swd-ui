@@ -97,6 +97,35 @@
             }
           }
         }
+        .price_viewer {
+          margin-top: 20px;
+          width: 80%;
+          padding: 10px 20px;
+          display: flex;
+          justify-content:left;
+          align-items: center;
+          border-radius: 13px;
+          box-shadow: 0px 0px 6px 2px rgb(223, 225, 226);
+
+          .info_cate {
+            font-size: 110%;
+            font-weight: 600;
+            margin-right: 10px;
+          }
+          .price_viewer_data{
+            position: relative;
+            font-size: 38px;
+            font-weight: 600;
+            color: rgb(233, 37, 37);
+            .price_type{
+              position: absolute;
+              top: 0;
+              right: -35px;
+              font-size: 20px;
+              font-weight:600;
+            }
+          }
+        }
         .order {
           display: flex;
           width: 100%;
@@ -159,14 +188,32 @@
       margin-top: 10%;
       width: 100%;
       padding: 0 3%;
+      .title_des{
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .description_product{
+        font-size: 20px;
+        font-weight: 500;
+        padding: 15px;
+      }
       .intro_image {
         .child_intro {
-          display: 1;
+          display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           text-align: center;
           .child_intro_image {
             width: 90%;
+          }
+          .child_intro_text{
+            width: fit-content;
+            text-align: center;
+            max-width: 80%;
+            padding: 15px 0 ;
+            font-size: 20px;
+
           }
         }
       }

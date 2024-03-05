@@ -20,10 +20,6 @@ import { useDispatch } from "react-redux";
 
 function Header({ indexCart }) {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
-
-
-
-
   const [hoveredItem, setHoveredItem] = useState("null");
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
