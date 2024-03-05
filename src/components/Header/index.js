@@ -13,15 +13,28 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../Authors/Login";
 import SignUp from "../Authors/Signup";
+import { useSelector } from "react-redux";
+import { logOut } from "~/redux/apiRequest";
+import { useDispatch } from "react-redux";
+
 
 function Header({ indexCart }) {
-  const [accessToken, setAccessToken] = useState(null);
+  const userAuth = useSelector((state) => state.auth.login.currentUser);
+
+
+
+
   const [hoveredItem, setHoveredItem] = useState("null");
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [numCart, setnumCart] = useState(3);
   const [numConF, setnumConF] = useState(1);
+
+  const handleLogOut = () => {
+    logOut(dispatch, navigate);
+  };
   const user = {
     userName: "Hoàng Chí Dương",
     date: "23/03/2002",
@@ -213,7 +226,7 @@ function Header({ indexCart }) {
               Liên Hệ
             </div>
           </div>
-          {accessToken !== null && (
+          {userAuth.Id !== "" && (
             <div className="itemLog-cart">
               <div className="item_div">
                 <IoHeartSharp
@@ -264,18 +277,18 @@ function Header({ indexCart }) {
                     <div className="img_user">
                       {user.img === "" && (
                         <div className="img_user_data">
-                          {filterName(user.userName)}
+                          {filterName(userAuth.UserName)}
                         </div>
                       )}
                       {user.img !== "" && (
                         <img
                           className="img_user_data"
                           src={user.img}
-                          alt={user.userName}
+                          alt={userAuth.UserName}
                         />
                       )}
                     </div>
-                    <div className="name_user">{user.userName}</div>
+                    <div className="name_user">{userAuth.UserName}</div>
                   </div>
                   <div className="profile_staus">Tài khoản của bạn</div>
                   <div className="item_profile">
@@ -285,7 +298,7 @@ function Header({ indexCart }) {
                     </div>
                     <div className="item_profile_user">
                       <div className="profile_user">Email:</div>
-                      <div className="profile_user">{user.email}</div>
+                      <div className="profile_user">{userAuth.Email}</div>
                     </div>
                     <div className="item_profile_user">
                       <div className="profile_user">Số điện thoại:</div>
@@ -307,7 +320,7 @@ function Header({ indexCart }) {
                   <div className="profile_staus">Tùy chọn khác</div>
                   <div className="item_profile">
                     <div className="item_profile_user">
-                      <div className="profile_quote">
+                      <div className="profile_quote" onClick={handleLogOut}>
                         <IoLogOutOutline className="profile_quote_icon" />
                         Đăng xuất
                       </div>
@@ -317,7 +330,7 @@ function Header({ indexCart }) {
               </div>
             </div>
           )}
-          {accessToken === null && (
+          {userAuth?.Id === "" && (
             <div className="itemLog-cart">
               <button
                 className="btn_log_in"

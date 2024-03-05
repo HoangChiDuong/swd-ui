@@ -1,8 +1,12 @@
 import "~/components/Authors/Login/Login.scss";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "~/redux/apiRequest";
+
 const Login = ({ setShowLogin }) => {
   const [Email, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
@@ -15,6 +19,9 @@ const Login = ({ setShowLogin }) => {
   const CloseLogin = () => {
     setShowLogin(false);
   };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const ChangeEmail = (value) => {
     SetEmail(value);
@@ -22,6 +29,19 @@ const Login = ({ setShowLogin }) => {
   const ChangePassword = (value) => {
     SetPassword(value);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newUser = {
+      email: Email,
+      password: password,
+    };
+
+    loginUser(newUser, dispatch, navigate)
+
+  }
+
+
   return (
     <div className="author_modal">
       <div className="login">
@@ -71,7 +91,7 @@ const Login = ({ setShowLogin }) => {
             <div className="forgot_pass">Quên mật khẩu?</div>
           </div>
           <div className="login_btn">
-            <button className="btn_log_user">Đăng Nhập</button>
+            <button className="btn_log_user" onClick={handleSubmit}>Đăng Nhập</button>
           </div>
           <div className="or_login">Hoặc</div>
           <div className="login_btn">
