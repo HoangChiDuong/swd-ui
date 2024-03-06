@@ -6,13 +6,15 @@ import "~/layouts/customer/ViewProduct/ViewProduct.scss";
 import numeral from "numeral";
 import Login from "~/components/Authors/Login";
 import { IoHeartSharp } from "react-icons/io5";
+
 const ViewProduct = () => {
   const [load, setLoad] = useState(null);
   const location = useLocation();
   const [showLogin, setShowLogin] = useState(false);
   var productId = location.state?.productId || 0;
   const [selectedImage, setSelectedImage] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
+ 
+  const accessToken = localStorage.getItem("jwtToken")
   // useEffect(() => {
   //   const firstImageURL = ;
   //   setFirstImage(firstImageURL);

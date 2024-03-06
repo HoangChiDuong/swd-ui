@@ -49,11 +49,11 @@ const Login = ({ setShowLogin }) => {
 
     const newUser = {
       email: Email,
-      password: password,
+      password: Password,
     };
 
-    loginUser(newUser, dispatch, navigate)
-
+    loginUser(newUser, dispatch, navigate,setShowLogin) 
+   
   }
 
 

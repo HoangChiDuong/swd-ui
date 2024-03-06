@@ -19,18 +19,21 @@ import { Link } from "react-router-dom";
 //     autoClose: 2000,
 // };
 import "../styles/CreateProduct.css";
+import axios from "axios";
 const CreateProduct = () => {
   const [ProductName, setProductName] = useState("");
   const [Price, setPrice] = useState("");
   const [DiscountPercent, setDiscountPercent] = useState("");
   const [Decription, setDescription] = useState("");
-  const [CateId, setCateId] = useState("");
+  const [CateId, setCateId] = useState(1);
   const [Quantity, setQuantity] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [showInputDesImg, setShowInputDesImg] = useState(false);
   const [InputDesImg, setInputDesImg] = useState("");
   const [imgIndex, setImageIndex] = useState(null);
+  const [ImgRequest, setImgRequest] = useState(null);
   const [ImageFile, setImageFile] = useState([]);
+  const [ImageData, setImageData] = useState([]);
   const [dataOption, setDataOption] = useState([]);
   const [nameOption, setNameOption] = useState(null);
   const [quantityOption, setQuantityOption] = useState(null);
@@ -102,17 +105,16 @@ const CreateProduct = () => {
     setImageFile([]);
     setFormErrors({});
   };
-const DataProduct = {
-  product:{
-    productName : ProductName,
-    price : Price,
-    category: CateId,
-    description : Decription,
-  },
-  images: ImageFile,
-  options: dataOption
+  const DataProduct = {
+    productName: ProductName,
+    price: Price,
+    categoryId: CateId,
+    description: Decription,
+    isDelete: false,
+    imagess: ImageData,
+    options: dataOption,
+  };
 
-}
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -133,14 +135,21 @@ const DataProduct = {
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      if (imgIndex !== null) {
+      if (imgIndex !== null && ImgRequest !== null) {
         const newImageFile = [...ImageFile];
         newImageFile.push({
           image: imgIndex,
+          //description: InputDesImg,
+        });
+
+        const newImageData = [...ImageData];
+        newImageData.push({
+          base24: ImgRequest,
           description: InputDesImg,
         });
-        setImageFile(newImageFile);
 
+        setImageData(newImageData);
+        setImageFile(newImageFile);
         setInputDesImg("");
         setImageIndex(null);
         setShowInputDesImg(false);
@@ -150,10 +159,19 @@ const DataProduct = {
     }
   };
 
-  const handleFileChange = (event) => {
-    console.log(ImageFile);
+  const handleFileChange = (e) => {
     setShowInputDesImg(true);
-    setImageIndex(event.target.files[0]);
+    setImageIndex(e.target.files[0]);
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setImgRequest(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
   const pushOption = () => {
     if (nameOption && quantityOption !== null) {
@@ -170,7 +188,18 @@ const DataProduct = {
     } else {
       console.error("Chưa Điền Thông tin");
     }
-    console.log(dataOption);
+  };
+  const handleAddProduct = () => {
+    console.log(DataProduct);
+    axios
+      .post("https://localhost:7058/AddProduct", DataProduct)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Xử lý lỗi nếu có
+        console.error("Error:", error);
+      });
   };
   return (
     <>
@@ -182,7 +211,11 @@ const DataProduct = {
             </Link>
             <h2 className="content-title">Thêm Sản Phẩm</h2>
             <div>
-              <button type="submit" className="btn btn-primary" onClick={console.log(DataProduct)}>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleAddProduct}
+              >
                 Thêm Sản Phẩm
               </button>
             </div>
@@ -224,26 +257,26 @@ const DataProduct = {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="product_title" className="form-label">
-                  Loại Dự Án
-                </label>
-                <select
-                  className="form-control"
-                  id="product_title"
-                  required
-                  value={CateId}
-                  onChange={(e) => setCateId(e.target.value)}
-                >
-                  <option value="">Nhà Chung Cư</option>
-                  <option value="chim">Nhà Phố</option>
-                  <option value="do-an">Phòng Ngủ</option>
-                  <option value="long-chim">Phòng Khách</option>
-                  <option value="phu-kien">Phòng Bếp</option>
-                </select>
-                {formErrors.CateId && (
-                  <div className="text-danger">{formErrors.CateId}</div>
-                )}
-              </div>
+    <label htmlFor="product_title" className="form-label">
+        Loại Dự Án
+    </label>
+    <select
+        className="form-control"
+        id="product_title"
+        required
+        
+        onChange={(e) => setCateId(parseInt(e.target.value))}
+    >
+        <option value={1}>Nhà Chung Cư</option>
+        <option value={2}>Nhà Phố</option>
+        <option value={3}>Phòng Ngủ</option>
+        <option value={4}>Phòng Khách</option>
+        <option value={5}>Phòng Bếp</option>
+    </select>
+    {formErrors.CateId && (
+        <div className="text-danger">{formErrors.CateId}</div>
+    )}
+</div>
               <div className="mb-4">
                 <label className="form-label">Mô Tả Chung</label>
                 <textarea
@@ -297,7 +330,6 @@ const DataProduct = {
                         value={nameOption}
                         onChange={(e) => {
                           setNameOption(e.target.value);
-                          console.log(e.target.value);
                         }}
                       />
                       <input
@@ -307,7 +339,6 @@ const DataProduct = {
                         className="pob_add_quantity"
                         onChange={(e) => {
                           setQuantityOption(e.target.value);
-                          console.log(e.target.value);
                         }}
                       />
                       <div className="push_option" onClick={pushOption}>
@@ -364,7 +395,7 @@ const DataProduct = {
                   ))}
                   {ImageFile.length < 8 && (
                     <label
-                      class="custom-file-upload"
+                      className="custom-file-upload"
                       style={{
                         width: "80px",
                         height: "80px",

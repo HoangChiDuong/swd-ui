@@ -63,9 +63,10 @@
         border: 3px solid #032138;
       }
       button {
+        color: #000;
         position: absolute;
-        right: 9px;
-        top: 6px;
+        right: 1;
+        top: 4px;
         padding: 3.5px 10px;
         border-radius: 10px;
         display: flex;
@@ -351,7 +352,7 @@
           }
           .profile_staus {
             text-align: left;
-            font-weight: 500;
+            font-weight: 600;
           }
           .item_profile {
             width: auto;

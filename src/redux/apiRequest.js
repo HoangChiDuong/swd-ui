@@ -2,7 +2,7 @@ import axios from "axios";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess } from "./authSilce";
 import jwt_decode from 'jwt-decode';
 
-export const loginUser = async (user, dispatch, navigate) => {
+export const loginUser = async (user, dispatch, navigate,setShowLogin) => {
     dispatch(loginStart());
 
     try {
@@ -24,7 +24,7 @@ export const loginUser = async (user, dispatch, navigate) => {
                 } else if (token.role === "ST") {
                     navigate("/staff/dashboard");
                 } else {
-                    navigate("/");
+                    setShowLogin(false);//navigate("/");
                 }
             } else {
                 // Handle other cases

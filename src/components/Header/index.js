@@ -7,6 +7,7 @@ import {
   IoHeartSharp,
   IoLogOutOutline,
 } from "react-icons/io5";
+import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosCart } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -309,6 +310,7 @@ function Header({ indexCart }) {
                   <div className="item_profile">
                     <div className="item_profile_user">
                       <div className="profile_quote" onClick={goViewQuote}>
+                      <VscGitPullRequestGoToChanges className="profile_quote_icon" />
                         Yêu cầu báo giá của bạn
                       </div>
                     </div>
