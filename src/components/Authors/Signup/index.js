@@ -81,6 +81,23 @@ const SignUp = ({ setShowSignup }) => {
               </div>
             </div>
             <div className="login_input">
+              <div className="login_input_name">Tên Người Dùng</div>
+              <div className="login_input_text">
+                <input
+                  aria-invalid="false"
+                  autoComplete="email"
+                  spellCheck="false"
+                  className="login_value"
+                  placeholder="Email"
+                  type="email"
+                  value={Email}
+                  onChange={(e) => {
+                    ChangeEmail(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="login_input">
               <div className="login_input_name">Số điện thoại</div>
               <div className="login_input_text">
                 <input

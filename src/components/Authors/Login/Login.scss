@@ -59,7 +59,9 @@
   .login_info {
     width: 100%;
     height: auto;
+  
     .login_input {
+      margin-top: 15px;
       width: 100%;
       .login_input_name {
         padding: 0 22%;
@@ -86,8 +88,8 @@
           background-color: rgb(255, 255, 255);
           padding: 15px 17px;
           font-size: 14px;
-          box-shadow: rgba(86, 98, 106, 0.45) 0px 2px 7px;
-          border: 2px solid #c9d2d5;
+          box-shadow: rgba(9, 11, 12, 0.45) 0px 0px 4px 1px;
+          border: none;
         }
       }
       .password-toggle-icon {

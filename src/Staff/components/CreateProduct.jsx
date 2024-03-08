@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoIosCloseCircle, IoMdAddCircle } from "react-icons/io";
 import { IoPushOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import numeral from "numeral";
 // import { useDispatch, useSelector } from "react-redux";
 // import { toast } from "react-toastify";
 // import { PRODUCT_CREATE_RESET } from "../../Redux/Constants/ProductConstants";
@@ -249,7 +250,7 @@ const CreateProduct = () => {
                   className="form-control"
                   id="product_price"
                   required
-                  value={Price}
+                  value={numeral(Price).format("0,0")}
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 {formErrors.Price && (

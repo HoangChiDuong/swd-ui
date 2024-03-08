@@ -1,60 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "~/components/Header";
 import "~/layouts/home/Home.scss";
 import Product from "~/components/Product";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import App from "~/App";
 const HomePage = () => {
+  const [Idcategory, setIdcategory] = useState(1);
+  const [Products, setProducts] = useState();
+  const [selectedCategory, setSelectedCategory]  = useState(null);
   const imageCate = [
     {
       src: "./Cchungcu.png",
-      Text: "Chung Cư",
+      Text: "Nhà Chung Cư",
+      id: 1,
     },
     {
       src: "./Cnha.png",
       Text: "Nhà Phố",
-    },
-    {
-      src: "./Croom.png",
-      Text: "Phòng Khách",
-    },
-    {
-      src: "./Ckitchen.png",
-      Text: "Phòng Bếp",
+      id: 2,
     },
     {
       src: "./cBed.png",
       Text: "Phòng Ngủ",
-    },
-  ];
-  const Products = [
-    {
-      id: 1,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 2,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
       id: 3,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
     },
     {
+      src: "./Croom.png",
+      Text: "Phòng Khách",
       id: 4,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
     },
     {
+      src: "./Ckitchen.png",
+      Text: "Phòng Bếp",
       id: 5,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 6,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
     },
   ];
+  useEffect(() => {
+    axios
+    .get(`https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${Idcategory}`)
+    .then((response) => {
+      console.log(response.data);
+      const firstSixProducts = response.data.slice(0, 6); 
+      setProducts(firstSixProducts);
+    })
+    .catch((error) => {
+      console.error("There was an error!", error);
+    });
+  }, [Idcategory]);
   const navigate = useNavigate();
   const handleProductClick = (productId) => {
-    navigate("/XemSanPham",{ state: { productId } });
+    navigate("/XemSanPham", { state: { productId } });
+  };
+  const handleCate = (Id,index) => {
+    setIdcategory(Id);
+    setSelectedCategory(index)
   };
   return (
     <>
@@ -73,17 +73,29 @@ const HomePage = () => {
             </div>
             <div className="home_cate_icon">
               {imageCate.map((item, index) => (
-                <div key={index} className="cate_icon_index">
+                <div key={index} className={`cate_icon_index ${
+                  index === selectedCategory ? "selected" : ""
+                }`} onClick={() =>
+                  handleCate(item.id,index)
+                }>
                   <img src={item.src} alt="cateimgae" />
-                  <div className="cate_icon_text">{item.Text}</div>
+                  <div
+                    className="cate_icon_text"                   
+                  >
+                    {item.Text}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="home_product_cate">
-            {Products.map((product, index) => (
-              <div key={index} className="product_index" onClick={() => handleProductClick(product.id)}>
-                <Product id={product.id} imageUrl={product.src} />
+            {Products?.map((product, index) => (
+              <div
+                key={index}
+                className="product_index"
+                onClick={() => handleProductClick(product.productId)}
+              >
+                <Product id={product.id} imageUrl={product.imagePath} />
               </div>
             ))}
           </div>
