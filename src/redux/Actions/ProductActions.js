@@ -1,24 +1,26 @@
 import axios from "axios";
-import { LIST_STAFF_FAIL, LIST_STAFF_REQUEST, LIST_STAFF_SUCCESS, USER_INFO_FAIL, USER_INFO_REQUEST, USER_INFO_SUCCESS } from "../Constants/UserConstants";
+import { DELETE_PRODUCT_FAIL, DELETE_PRODUCT_REQUEST, DELETE_PRODUCT_SUCCESS, LIST_PRODUCT_FAIL, LIST_PRODUCT_REQUEST, LIST_PRODUCT_SUCCESS } from "../Constants/ProductConstants";
 
 
 
-export const listStaff = (userId) => async (dispatch) => {
+
+
+export const listProducts = () => async (dispatch) => {
     try {
-        dispatch({ type: LIST_STAFF_REQUEST });
-        console.log(userId)
+        dispatch({ type: LIST_PRODUCT_REQUEST });
+
 
         const accessToken = localStorage.getItem('jwtToken');
-
         const config = {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/api/User/GetAllStaffById/2`, config);
+        const { data } = await axios.get(`https://localhost:7058/GetAllProduct`, config);
 
-        dispatch({ type: LIST_STAFF_SUCCESS, payload: data });
+
+        dispatch({ type: LIST_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
         const message =
             error.response && error.response.data.message
@@ -28,17 +30,21 @@ export const listStaff = (userId) => async (dispatch) => {
             // dispatch(logout());
         }
         dispatch({
-            type: LIST_STAFF_FAIL,
+            type: LIST_PRODUCT_FAIL,
             payload: message,
         });
     }
-};
+}
 
-export const infoUser = (userId) => async (dispatch) => {
+
+
+export const deleteProduct = (productId) => async (dispatch) => {
     try {
-        dispatch({ type: USER_INFO_REQUEST });
-        console.log(userId)
+        dispatch({ type: DELETE_PRODUCT_REQUEST });
 
+        // const {
+        //     userLogin: { userInfo },
+        // } = getState();
         const accessToken = localStorage.getItem('jwtToken');
 
         const config = {
@@ -47,9 +53,9 @@ export const infoUser = (userId) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/api/User/UserInfo?userId=${userId}`, config);
+        await axios.delete(`https://localhost:7058/Delete_Product?productId=${productId}`, config);
 
-        dispatch({ type: USER_INFO_SUCCESS, payload: data });
+        dispatch({ type: DELETE_PRODUCT_SUCCESS });
     } catch (error) {
         const message =
             error.response && error.response.data.message
@@ -59,7 +65,7 @@ export const infoUser = (userId) => async (dispatch) => {
             // dispatch(logout());
         }
         dispatch({
-            type: USER_INFO_FAIL,
+            type: DELETE_PRODUCT_FAIL,
             payload: message,
         });
     }

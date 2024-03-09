@@ -11,6 +11,9 @@ import {
     REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { staffListReducer, userInfoReducer } from './Reducers/UserReducers';
+import { productDeleteReducer, productListReducer } from './Reducers/ProductReducers';
+import { addCardReducer } from './Reducers/CardReducers';
 
 
 
@@ -23,6 +26,11 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    staffList: staffListReducer,
+    productList: productListReducer,
+    deleteProduct: productDeleteReducer,
+    userInfo: userInfoReducer,
+    addCard: addCardReducer,
 
 });
 

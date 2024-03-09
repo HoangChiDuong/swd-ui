@@ -5,7 +5,10 @@ import avatar from '~/assets/avatar.jpg';
 import { CiCalendarDate } from "react-icons/ci";
 import { MdOutlineMail } from "react-icons/md";
 import { MdOutlineLocalPhone } from "react-icons/md";
+import { useSelector } from "react-redux";
 const Profile = () => {
+    const user = useSelector((state) => state.userInfo.user);
+    // const { error: errorDelete, success: successDelete } = productDelete;
 
     return (
         <div className="profile">
@@ -13,9 +16,12 @@ const Profile = () => {
 
             <div className="user--profile">
                 <div className="user--detail">
-                    <img src={avatar} />
-                    <h3 className="username">Thanh Dinh</h3>
-                    <span className="profession">HR</span>
+                    <img src={(user && user.images) ? user.images : avatar} />
+
+                    <h3 className="username">{user?.userName || null}</h3>
+
+                    <span className="profession">{user?.position || null}</span>
+
                 </div>
                 <div className="user--courses">
                     <div className="courses">
@@ -34,7 +40,7 @@ const Profile = () => {
                                 <MdOutlineMail />
                             </div>
                             <div className="courses-name">
-                                <input type="email" className="title" placeholder="Thanh123@gmail.com" />
+                                <input type="email" className="title" placeholder={user?.email || null} />
                             </div>
                         </div>
                     </div>
@@ -45,7 +51,7 @@ const Profile = () => {
                                 <MdOutlineLocalPhone />
                             </div>
                             <div className="courses-name">
-                                <input type="text" className="title" placeholder="0123456789" />
+                                <input type="text" className="title" placeholder={user?.phone || null} />
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,4 @@
+export const ADD_CARD_REQUEST = "ADD_CARD_REQUEST";
+export const ADD_CARD_SUCCESS = "ADD_CARD_SUCCESS";
+export const ADD_CARD_FAIL = "ADD_CARD_FAIL";
+export const ADD_CARD_RESET = "ADD_CARD_RESET";

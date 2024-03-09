@@ -6,16 +6,17 @@ import { useState } from "react";
 import '../styles/Product.css';
 import { MdDeleteOutline } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { deleteProduct } from "~/redux/Actions/ProductActions";
 
 const Product = (props) => {
     const { product } = props;
 
     const [showConfirmation, setShowConfirmation] = useState(false);
-
+    const dispatch = useDispatch();
 
     const deletehandler = (productId) => {
-
-
+        dispatch(deleteProduct(productId))
         setShowConfirmation(false);
 
     };
@@ -28,7 +29,7 @@ const Product = (props) => {
             <div className="product-container">
                 <div className="product-container-detail">
                     <Link to="#" className="product-container-detail-img">
-                        <img src={product.thumbnail} alt="Product" style={{ width: '100%' }} />
+                        <img src={product.imagePath} alt="Product" style={{ width: '100%' }} />
                     </Link>
                     <div className="info-wrap">
                         <Link to="#" className="product-container-detail-title">

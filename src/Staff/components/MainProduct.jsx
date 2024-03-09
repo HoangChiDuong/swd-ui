@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Product from "./Product";
+import { useSelector } from "react-redux";
 // import { useDispatch, useSelector } from "react-redux";
 // import { listProducts } from "../../Redux/Actions/ProductActions";
 // import { listProducts } from "../../pages/redux/Actions/ProductActions";
@@ -65,15 +66,15 @@ const MainProducts = () => {
     ];
 
 
-
+    const productList = useSelector((state) => state.productList.listProduct);
     const recordsPerPage = 8;
     // const Data = useSelector((state) => state.productList.products);
     const totalPages = Math.ceil(Data.length / recordsPerPage);
     const firstIndex = (currentPage - 1) * recordsPerPage;
     const lastIndex = currentPage * recordsPerPage;
-    const slicedProducts = Data?.slice(firstIndex, lastIndex);
+    const slicedProducts = productList?.slice(firstIndex, lastIndex);
 
-    // const productList = useSelector((state) => state.productList);
+
     // const { loading, error, products } = productList;
 
     // const productDelete = useSelector((state) => state.productDelete);
@@ -110,7 +111,7 @@ const MainProducts = () => {
                     ) : ( */}
 
                     {/* Products */}
-                    {slicedProducts.map((product) => (
+                    {slicedProducts?.map((product) => (
                         <Product product={product} key={product.productId} />
                     ))}
 
