@@ -17,8 +17,7 @@ import SignUp from "../Authors/Signup";
 import { useSelector } from "react-redux";
 import { logOut } from "~/redux/apiRequest";
 import { useDispatch } from "react-redux";
-
-
+import { MdDelete } from "react-icons/md";
 function Header({ indexCart }) {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
   const [hoveredItem, setHoveredItem] = useState("null");
@@ -26,12 +25,30 @@ function Header({ indexCart }) {
   const [showSignup, setShowSignup] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [numCart, setnumCart] = useState(3);
+  const [numCart, setnumCart] = useState(0);
   const [numConF, setnumConF] = useState(1);
+  const [CartData, setCartData] = useState();
 
   const handleLogOut = () => {
     logOut(dispatch, navigate);
   };
+  useEffect(() => {
+    if (userAuth.Id !== "") {
+      console.log(userAuth);
+      axios
+        .get(
+          `https://localhost:7058/api/Cart/GetCartDetails?userId=${userAuth.Id}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          setCartData(response.data);
+          setnumCart(response.data.length);
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+        });
+    }
+  }, [userAuth.Id]);
   const user = {
     userName: "Hoàng Chí Dương",
     date: "23/03/2002",
@@ -39,9 +56,6 @@ function Header({ indexCart }) {
     phone: "0785947818",
     img: "",
   };
-  // useEffect(() => {
-
-  // }, [indexCart]);
   const navItems = [
     {
       title: "Thiết Kế Nội Thất Nguyên Căn",
@@ -61,37 +75,17 @@ function Header({ indexCart }) {
       subItems: [
         {
           subName: "Phòng Khách",
-          id: 3,
+          id: 4,
         },
         {
           subName: "Phòng Ngủ",
-          id: 4,
+          id: 3,
         },
         {
           subName: "Phòng Bếp",
           id: 5,
         },
       ],
-    },
-  ];
-  const CartData = [
-    {
-      src: "https://noithatmanhhe.vn/media/18959/1-khong-gian-noi-that-phong-khach-chung-cu-noi-that-manh-he.jpg?width=700&height=484.16666666666663&rmode=boxpad",
-      cartId: 1,
-      productId: 1,
-      nameProduct: "Mẫu phòng khách đẹp đẳng cấp với gỗ Sồi tự nhiên",
-    },
-    {
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-      cartId: 2,
-      productId: 2,
-      nameProduct: "Diamond Alnata - 96m2 - TYPE B1",
-    },
-    {
-      src: "https://noithatmanhhe.vn/media/36557/thiet-ke-noi-that-phong-khach-lien-bep-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-      cartId: 3,
-      productId: 3,
-      nameProduct: "Emerald Bình Dương - 54m2 - 2PN",
     },
   ];
   const handleLogoClick = (title) => {
@@ -120,6 +114,15 @@ function Header({ indexCart }) {
   const hdcCartItem = (productId) => {
     navigate("/XemSanPham", { state: { productId } });
   };
+  const handleDeleteCart = (id) => {
+    console.log(id);
+    axios
+      .delete(`https://localhost:7058/api/Cart/DeleteCartDetail?cartDetailId=${id}`)
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+
   const GoAuthorsPage = (title) => {
     switch (title) {
       case "Login":
@@ -132,18 +135,23 @@ function Header({ indexCart }) {
         break;
     }
   };
+  const truncateProductName = (productName) => {
+    if (productName.length > 21) {
+      return productName.substring(0, 21) + "...";
+    } else {
+      return productName;
+    }
+  };
   const filterName = (name) => {
     if (name && name.length > 0) {
-      // Trả về chữ cái đầu tiên của tên, chuyển đổi thành chữ cái in hoa
       return name[0].toUpperCase();
     } else {
-      // Trường hợp name không tồn tại hoặc rỗng, trả về null hoặc giá trị mặc định khác
       return null;
     }
   };
   const goViewQuote = () => {
     navigate("/TienTrinhYeuCau");
-  }
+  };
   return (
     <div className="header">
       {showLogin && <Login setShowLogin={setShowLogin} />}
@@ -162,7 +170,6 @@ function Header({ indexCart }) {
             <input
               className="headSearch-content"
               id="search_header"
-
               placeholder="Tìm Kiếm"
             />
             <button>
@@ -170,7 +177,6 @@ function Header({ indexCart }) {
             </button>
           </div>
           <div className="headNavbar">
-            {/* Hiển thị từng mục trong navbar */}
             <div
               className="nav-item"
               onMouseEnter={() => setHoveredItem("Trang Chủ")}
@@ -193,7 +199,6 @@ function Header({ indexCart }) {
               >
                 {item.title}
                 <IoChevronDown className="nav_more" />
-                {/* Hiển thị danh sách con nếu mục này đang được hover */}
                 {hoveredItem !== "null" && (
                   <div className="sub-items">
                     {item.subItems.map((subItem, subIndex) => (
@@ -233,21 +238,35 @@ function Header({ indexCart }) {
                   }}
                 />
                 {numCart !== 0 && <div className="item_num">{numCart}</div>}
-
                 <div className="item_cart">
-                  <div className="item_cart_title">Danh Mục Yêu Thích Của Bạn</div>
-                  {CartData.map((cart, index) => (
+                  <div className="item_cart_title">
+                    Danh Mục Yêu Thích Của Bạn
+                  </div>
+                  {CartData?.map((cart, index) => (
                     <div
                       key={index}
                       className="item_cart_show"
-                      onClick={() => hdcCartItem()}
+                      onClick={() => hdcCartItem(cart.productId)}
                     >
                       <img
                         className="item_cart_img"
-                        src={cart.src}
+                        src={cart.productThumbnail}
                         alt="item_cart_show"
                       />
-                      <div className="item_cart_name">{cart.nameProduct}</div>
+                      <div className="item_cart_name">
+                        {truncateProductName(cart.productName)}
+                      </div>
+                      <div className="item_cart_dele1">
+                        <div
+                          className="item_cart_dele2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteCart(cart.cartDetailId);
+                          }}
+                        >
+                          <MdDelete className="icon_dele_cart" />
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -277,10 +296,10 @@ function Header({ indexCart }) {
                           {filterName(userAuth.UserName)}
                         </div>
                       )}
-                      {user.img !== "" && (
+                      {!userAuth && (
                         <img
                           className="img_user_data"
-                          src={user.img}
+                          src={""}
                           alt={userAuth.UserName}
                         />
                       )}
@@ -310,7 +329,7 @@ function Header({ indexCart }) {
                   <div className="item_profile">
                     <div className="item_profile_user">
                       <div className="profile_quote" onClick={goViewQuote}>
-                      <VscGitPullRequestGoToChanges className="profile_quote_icon" />
+                        <VscGitPullRequestGoToChanges className="profile_quote_icon" />
                         Yêu cầu báo giá của bạn
                       </div>
                     </div>

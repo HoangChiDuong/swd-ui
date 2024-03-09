@@ -33,17 +33,6 @@ const Login = ({ setShowLogin }) => {
     email: Email,
     password: Password,
   };
-  const LoginBTN = () => {
-    axios
-      .post("https://localhost:7058/api/User/login", data)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        // Xử lý lỗi nếu có
-        console.error("Error:", error);
-      });
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -55,8 +44,6 @@ const Login = ({ setShowLogin }) => {
     loginUser(newUser, dispatch, navigate,setShowLogin) 
    
   }
-
-
   return (
     <div className="author_modal">
       <div className="login">
