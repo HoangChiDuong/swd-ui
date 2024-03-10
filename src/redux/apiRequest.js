@@ -2,7 +2,7 @@ import axios from "axios";
 import { loginFailed, loginStart, loginSuccess, logoutFailed, logoutStart, logoutSuccess } from "./authSilce";
 import jwt_decode from 'jwt-decode';
 
-export const loginUser = async (user, dispatch, navigate,setShowLogin) => {
+export const loginUser = async (user, dispatch, navigate, setShowLogin) => {
     dispatch(loginStart());
 
     try {
@@ -19,9 +19,9 @@ export const loginUser = async (user, dispatch, navigate,setShowLogin) => {
 
                 saveTokenToLocalStorage(res.data.data);
                 console.log("sdsads");
-                if (token.role === 'AD') {
-                    navigate("/dashboard");
-                } else if (token.role === "ST") {
+                if (token.Role === 'AD') {
+                    navigate("/admin/dashboard");
+                } else if (token.Role === "ST") {
                     navigate("/staff/dashboard");
                 } else {
                     setShowLogin(false);//navigate("/");

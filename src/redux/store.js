@@ -13,7 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { staffListReducer, userInfoReducer } from './Reducers/UserReducers';
 import { productDeleteReducer, productListReducer } from './Reducers/ProductReducers';
-import { addCardReducer } from './Reducers/CardReducers';
+import { addCardReducer, deleteCardReducer, getCardDeatilReducer } from './Reducers/CardReducers';
 
 
 
@@ -31,6 +31,8 @@ const rootReducer = combineReducers({
     deleteProduct: productDeleteReducer,
     userInfo: userInfoReducer,
     addCard: addCardReducer,
+    getCardDetail: getCardDeatilReducer,
+    deleteCard: deleteCardReducer,
 
 });
 

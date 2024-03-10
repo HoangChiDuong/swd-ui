@@ -1,32 +1,37 @@
 import React from "react";
 import { BiLogoHtml5 } from "react-icons/bi";
-
+import { FcBusinessman } from "react-icons/fc";
+import { useSelector } from "react-redux";
+import { FcShop } from "react-icons/fc";
+import { FcSurvey } from "react-icons/fc";
 const Card = () => {
-    const couse = [
-        {
-            title: "Noi that",
-            icon: <BiLogoHtml5 />
-        },
-        {
-            title: "Noi that",
-            icon: <BiLogoHtml5 />
-        },
-        {
-            title: "Noi that",
-            icon: <BiLogoHtml5 />
-        }
-    ]
+    const users = useSelector((state) => state.staffList.users);
+    const products = useSelector((state) => state.productList.listProduct);
+
+
+
     return (
         <div className="card--container">
-            {couse.map((item) => (
-                <div className="card">
-                    <div className="card--cover">{item.icon}</div>
-                    <div className="card--title">
-                        <h2>{item.title}</h2>
-                    </div>
+            <div className="card">
+                <div className="card--cover"><FcBusinessman /></div>
+                <div className="card--title">
+                    <h2>Nhân viên: {users ? users.length : 0}</h2>
                 </div>
-            ))}
+            </div>
+            <div className="card">
+                <div className="card--cover"><FcShop /></div>
+                <div className="card--title">
+                    <h2>Sản Phẩm :{products ? products.length : 0}</h2>
+                </div>
+            </div>
+            <div className="card">
+                <div className="card--cover"><FcSurvey /></div>
+                <div className="card--title">
+                    <h2>Y/c Báo Giá:{users ? users.length : 0}</h2>
+                </div>
+            </div>
         </div>
+
     )
 }
 

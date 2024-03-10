@@ -3,7 +3,7 @@ import { BiEdit } from "react-icons/bi";
 const ProfileHeader = () => {
     return (
         <div className="profile--header">
-            <h2 className="header--title">Profile</h2>
+            <h2 className="header--title">Thông Tin Cá Nhân</h2>
             <div className="edit">
                 <BiEdit className="icon" />
             </div>

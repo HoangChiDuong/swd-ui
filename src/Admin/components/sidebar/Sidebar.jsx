@@ -67,7 +67,7 @@ const Sidebar = () => {
                 <div className="sidebar-menu">
                     <ul className="menu-list">
                         <li className="menu-item">
-                            <Link to="/admin"
+                            <Link to="/admin/dashboard"
                                 className={`menu-link ${activeLink === "/admin" ? "active" : ""}`}
                                 onClick={() => handleLinkClick("/admin")}>
                                 <span className="menu-link-icon">
