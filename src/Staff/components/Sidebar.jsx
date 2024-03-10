@@ -1,9 +1,21 @@
 import React from "react";
 import { BiHome, BiBookAlt, BiTask } from "react-icons/bi";
+import {
+    IoLogOutOutline,
+} from "react-icons/io5";
 import { RiProductHuntLine } from "react-icons/ri";
+import { LiaFileContractSolid } from "react-icons/lia";
 import "../styles/Sidebar.css";
 import logo from '~/assets/LogoSWD.png'
+import { logOut } from "~/redux/apiRequest";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        logOut(dispatch, navigate);
+    };
     return (
         <div className="menu">
             <div className="logo">
@@ -12,25 +24,32 @@ const Sidebar = () => {
             <div className="menu--list">
                 <a href="/staff/dashboard" className="item active">
                     <BiHome className="icon" />
-                    DashBoard
+                    Thống Kê
                 </a>
             </div>
             <div className="menu--list">
                 <a href="/staff/assignment" className="item">
                     <BiTask className="icon" />
-                    Assignment
+                    Yêu Cầu Báo Giá
                 </a>
             </div>
             <div className="menu--list">
                 <a href="/staff/product" className="item">
                     <RiProductHuntLine className="icon" />
-                    Product
+                    Sản Phẩm
                 </a>
             </div>
             <div className="menu--list">
-                <a href="/staff" className="item">
-                    <BiHome className="icon" />
-                    Logout
+                <a href="/staff/product" className="item">
+                    <LiaFileContractSolid className="icon" />
+                    Tạo Hợp Đồng
+                </a>
+            </div>
+            <div className="menu--list">
+                <a className="item" onClick={handleLogOut}>
+                    <IoLogOutOutline className="icon" />
+
+                    Đăng Xuất
                 </a>
             </div>
         </div>

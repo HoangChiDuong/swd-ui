@@ -1,48 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../styles/StaffList.css'
 import { BiLogoHtml5 } from "react-icons/bi";
 import avatar from '~/assets/avatar.jpg';
+import { useDispatch, useSelector } from "react-redux";
+import { listStaff } from "~/redux/Actions/UserActions";
 
 const StaffList = () => {
-    const staff = [
-        {
-            image: avatar,
-            name: "Thanh Lee",
-            status: "ban",
-            duration: "20 hour before"
-        },
-        {
-            image: avatar,
-            name: "Thanh Lee",
-            status: "ban",
-            duration: "20 hour before"
-        },
-        {
-            image: avatar,
-            name: "Thanh Lee",
-            status: "ban",
-            duration: "20 hour before"
-        },
-    ]
+
+
+
+    const staffList = useSelector((state) => state.staffList.users);
+
+    // const { loading, error, users } = staffList;
+
+
     return (
         <div className="staff--list">
             <div className="list--header">
-                <h2>Staffs</h2>
+                <h2>Nhân Viên</h2>
                 <select>
-                    <option value="busy">Busy</option>
-                    <option value="free">Free</option>
+                    <option value="busy">Đang Bận</option>
+                    <option value="free">Đang Rảnh </option>
                 </select>
             </div>
             <div className="list--container">
-                {staff.map((item) => (
+                {staffList?.map((item) => (
                     <div className="list">
                         <div className="staff--detail">
                             <img src={avatar} />
-                            <h2>{item.name}</h2>
+                            <h2>{item.userName}</h2>
                         </div>
-                        <span>{item.duration}</span>
-                        <span>{item.status}</span>
-                        <span>{item.cost}</span>
+                        <span>{item.email}</span>
+                        <span>{item.status === true ? "Đang rảnh" : "Đang Bận"}</span>
+                        <span>{item.phone}</span>
                         <span className="staff--todo">:</span>
                     </div>
                 ))}

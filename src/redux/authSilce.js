@@ -8,6 +8,7 @@ const authSlice = createSlice({
                 Id: "",
                 Email: "",
                 UserName: "",
+                Role: "",
                 role: "",
                 iss: "",
 
@@ -65,6 +66,7 @@ const authSlice = createSlice({
                 Id: "",
                 Email: "",
                 UserName: "",
+                Role: "",
                 role: "",
                 iss: "",
 
