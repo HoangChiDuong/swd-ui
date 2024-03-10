@@ -248,6 +248,8 @@ function Header({ indexCart }) {
                     </div>
                     Bạn chưa có dự án Yêu thích nào
                   </div>
+
+
                 )}
                 {numCart !== 0 && (
                   <div className="item_cart">
