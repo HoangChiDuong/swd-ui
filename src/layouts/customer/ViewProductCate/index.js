@@ -1,58 +1,50 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "~/components/Header";
 import Product from "~/components/Product";
 import "~/layouts/customer/ViewProductCate/ViewProductCate.scss";
 const ViewProductCate = () => {
+  const [Products,setProducts] = useState() 
   const navigate = useNavigate();
   const location = useLocation();
   const des = location.state.id;
-  console.log(des);
-  const Products = [
-    {
-      id: 1,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 2,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 3,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 4,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 5,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-    {
-      id: 6,
-      src: "https://noithatmanhhe.vn/media/37302/thiet-ke-noi-that-phong-khach-2.jpg?rmode=max&ranchor=center&width=80&height=68&format=jpg",
-    },
-  ];
+  useEffect(() => {
+    if (des === "cate1" || des === "cate2") {
+    } else if (des !== "cate1" && des !== "cate2") {
+      axios.get(
+        `https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${des}`
+      ).then((response) => {
+        console.log(response.data);
+        setProducts(response.data)
+      });
+    }
+  }, [des]);
+  
   const handleProductClick = (productId) => {
-    navigate("/XemSanPham", { state: { productId } });
+    navigate("/ProductDetail", { state: { productId } });
   };
   return (
     <div className="home">
       <Header />
       <div className="view_cate_product">
         <div className="view_cate_show">
-          <img src="./SlideShow.png" className="view_cate_show_img" alt="SlideShow"/>
+          <img
+            src="./SlideShow.png"
+            className="view_cate_show_img"
+            alt="SlideShow"
+          />
         </div>
-        <div className="view_cate_product">
+        <div className="view_cate_product_log">
           <div className="view_cate_p_Text">Dự Án</div>
           <div className="home_product_cate">
-            {Products.map((product, index) => (
+            {Products?.map((product, index) => (
               <div
                 key={index}
                 className="product_index"
-                onClick={() => handleProductClick(product.id)}
+                onClick={() => handleProductClick(product.productId)}
               >
-                <Product id={product.id} imageUrl={product.src} />
+                <Product id={product.id} imageUrl={product.imagePath} />
               </div>
             ))}
           </div>

@@ -8,6 +8,7 @@ import Login from "~/components/Authors/Login";
 import { IoHeartSharp } from "react-icons/io5";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Footer from "~/components/Footer";
 
 const ViewProduct = () => {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
@@ -164,6 +165,7 @@ const ViewProduct = () => {
               </div>
             </div>
           </div>
+          <Footer/>
         </div>
         {showAddNewAddress && (
           <NewAddress

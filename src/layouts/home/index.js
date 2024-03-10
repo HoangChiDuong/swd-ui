@@ -5,10 +5,11 @@ import Product from "~/components/Product";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import App from "~/App";
+import Footer from "~/components/Footer";
 const HomePage = () => {
   const [Idcategory, setIdcategory] = useState(1);
   const [Products, setProducts] = useState();
-  const [selectedCategory, setSelectedCategory]  = useState(null);
+  const [selectedCategory, setSelectedCategory]  = useState(0);
   const imageCate = [
     {
       src: "./Cchungcu.png",
@@ -50,7 +51,7 @@ const HomePage = () => {
   }, [Idcategory]);
   const navigate = useNavigate();
   const handleProductClick = (productId) => {
-    navigate("/XemSanPham", { state: { productId } });
+    navigate("/ProductDetail", { state: { productId } });
   };
   const handleCate = (Id,index) => {
     setIdcategory(Id);
@@ -119,6 +120,7 @@ const HomePage = () => {
             <img src="./GOATINTERIOR.PNG" alt="image" className="image_intro" />
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   );
