@@ -4,7 +4,7 @@ import "~/components/QuoteDetail/QuoteDetail.scss";
 const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   const navigation = useNavigate();
   const GoProduct = (product) => {
-    navigation("/XemSanPham", { state: { product } });
+    navigation("/ProductDetail", { state: { product } });
   };
 
   return (

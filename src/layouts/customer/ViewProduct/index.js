@@ -9,6 +9,9 @@ import { IoHeartSharp } from "react-icons/io5";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "~/redux/Actions/CardActions";
+import { useSelector } from "react-redux";
+import Footer from "~/components/Footer";
+
 
 const ViewProduct = () => {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
@@ -133,6 +136,7 @@ const ViewProduct = () => {
             </div>
           </div>
 
+
           <div className="product_introduce">
             <div className="title_des">
               Thiết Kế Nội Thất {productDetails?.cateName}
@@ -156,6 +160,7 @@ const ViewProduct = () => {
               ))}
             </div>
           </div>
+          <Footer/>
         </div>
       </div>
       {showAddNewAddress && (

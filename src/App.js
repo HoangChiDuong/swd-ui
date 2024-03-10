@@ -41,9 +41,9 @@ function App() {
 
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="/XemSanPham" element={<ViewProduct />} />
-            <Route path="/SanPhamTheoDanhMuc" element={<ViewProductCate />} />
-            <Route path="/TienTrinhYeuCau" element={<ViewQuotes />} />
+            <Route path="/ProductDetail" element={<ViewProduct />} />
+            <Route path="/ProductByCate" element={<ViewProductCate />} />
+            <Route path="/ProgressRequest" element={<ViewQuotes />} />
           </Route>
           <Route element={<AppStaff />}>
             <Route path="/staff/dashboard" element={<DashboardStaff />}></Route>

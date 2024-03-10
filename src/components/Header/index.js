@@ -7,6 +7,7 @@ import {
   IoHeartSharp,
   IoLogOutOutline,
 } from "react-icons/io5";
+import { SiReaddotcv } from "react-icons/si";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosCart } from "react-icons/io";
@@ -104,10 +105,10 @@ function Header({ indexCart }) {
         navigate("/home");
         break;
       case "Thiết Kế Nội Thất Nguyên Căn":
-        navigate("/SanPhamTheoDanhMuc", { state: { id: "cate1" } });
+        navigate("/ProductByCate", { state: { id: "cate1" } });
         break;
       case "Thiết Kế Nội Thất Theo Phòng":
-        navigate("/SanPhamTheoDanhMuc", { state: { id: "cate2" } });
+        navigate("/ProductByCate", { state: { id: "cate2" } });
         break;
       case "Liên Hệ":
         window.location.href = "/desktop-screen";
@@ -119,10 +120,10 @@ function Header({ indexCart }) {
     setHoveredItem(title); // Thiết lập hoveredItem là title
   };
   const handleSubClick = (subItem) => {
-    navigate("/SanPhamTheoDanhMuc", { state: { id: subItem.id } });
+    navigate("/ProductByCate", { state: { id: subItem.id } });
   };
   const hdcCartItem = (productId) => {
-    navigate("/XemSanPham", { state: { productId } });
+    navigate("/ProductDetail", { state: { productId } });
   };
   const handleDeleteCart = (id) => {
     console.log(id);
@@ -245,10 +246,14 @@ function Header({ indexCart }) {
                 />
 
                 {numCart !== 0 && <div className="item_num">{numCart}</div>}
-                <div className="item_cart">
-                  <div className="item_cart_title">
-                    Danh Mục Yêu Thích Của Bạn
+                {numCart === 0 && (
+                  <div className="item_cart">
+                    <div className="item_cart_log">
+                      <SiReaddotcv className="icon_cart_null" />
+                    </div>
+                    Bạn chưa có dự án Yêu thích nào
                   </div>
+
                   {errorDelete && (
                     <Message variant="alert-danger">{errorDelete}</Message>
                   )}
@@ -261,6 +266,15 @@ function Header({ indexCart }) {
                     <Message variant="alert-danger">{error}</Message>
                   ) : (
                     card?.map((cart, index) => (
+
+                )}
+                {numCart !== 0 && (
+                  <div className="item_cart">
+                    <div className="item_cart_title">
+                      Danh Mục Yêu Thích Của Bạn
+                    </div>
+                    {CartData?.map((cart, index) => (
+
                       <div
                         key={index}
                         className="item_cart_show"
@@ -286,10 +300,16 @@ function Header({ indexCart }) {
                           </div>
                         </div>
                       </div>
+
                     )))
                   }
 
                 </div>
+
+                    ))}
+                  </div>
+                )}
+
               </div>
               <div className="item_div_conf">
                 <IoNotifications className="IConf_icon" />

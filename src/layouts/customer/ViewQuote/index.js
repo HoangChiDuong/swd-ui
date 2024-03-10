@@ -143,7 +143,7 @@ const ViewQuotes = () => {
     },
   ];
   const GoProduct = (product) => {
-    navigation("/XemSanPham", { state: { product } });
+    navigation("/ProductDetail", { state: { product } });
   };
   
   const ShowDetailQuote = (quotes) => {
