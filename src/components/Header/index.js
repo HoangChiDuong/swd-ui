@@ -19,6 +19,10 @@ import { useSelector } from "react-redux";
 import { logOut } from "~/redux/apiRequest";
 import { useDispatch } from "react-redux";
 import { MdDelete } from "react-icons/md";
+import { deleteCart, getCard } from "~/redux/Actions/CardActions";
+import Loading from "~/Loading/Loading";
+import Message from "~/Loading/Error";
+
 function Header({ indexCart }) {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
   const [hoveredItem, setHoveredItem] = useState("null");
@@ -27,29 +31,14 @@ function Header({ indexCart }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [numCart, setnumCart] = useState(0);
+
   const [numConF, setnumConF] = useState(1);
   const [CartData, setCartData] = useState();
 
   const handleLogOut = () => {
     logOut(dispatch, navigate);
   };
-  useEffect(() => {
-    if (userAuth.Id !== "") {
-      console.log(userAuth);
-      axios
-        .get(
-          `https://localhost:7058/api/Cart/GetCartDetails?userId=${userAuth.Id}`
-        )
-        .then((response) => {
-          console.log(response.data);
-          setCartData(response.data);
-          setnumCart(response.data.length);
-        })
-        .catch((error) => {
-          console.error("There was an error!", error);
-        });
-    }
-  }, [userAuth.Id]);
+
   const user = {
     userName: "Hoàng Chí Dương",
     date: "23/03/2002",
@@ -57,6 +46,27 @@ function Header({ indexCart }) {
     phone: "0785947818",
     img: "",
   };
+
+  const cardDetail = useSelector((state) => state.getCardDetail) || {};
+  const { loading, error, card } = cardDetail;
+
+  const addCard = useSelector((state) => state.addCard) || {};
+  const { error: errorAddCard, success: successAddCard } = addCard;
+
+  const deleteCard = useSelector((state) => state.deleteCard) || {};
+  const { error: errorDelete, success: successDelete } = deleteCard;
+
+  useEffect(() => {
+    if (userAuth.Id !== "") {
+      dispatch(getCard(userAuth.Id));
+    }
+  }, [dispatch, successAddCard, successDelete]);
+
+  useEffect(() => {
+    setnumCart(card?.length || 0);
+  }, [card?.length]);
+
+
   const navItems = [
     {
       title: "Thiết Kế Nội Thất Nguyên Căn",
@@ -117,13 +127,7 @@ function Header({ indexCart }) {
   };
   const handleDeleteCart = (id) => {
     console.log(id);
-    axios
-      .delete(
-        `https://localhost:7058/api/Cart/DeleteCartDetail?cartDetailId=${id}`
-      )
-      .then((response) => {
-        console.log(response.data);
-      });
+    dispatch(deleteCart(id));
   };
 
   const GoAuthorsPage = (title) => {
@@ -240,6 +244,7 @@ function Header({ indexCart }) {
                     handleLogoClick("Login");
                   }}
                 />
+
                 {numCart !== 0 && <div className="item_num">{numCart}</div>}
                 {numCart === 0 && (
                   <div className="item_cart">
@@ -248,6 +253,20 @@ function Header({ indexCart }) {
                     </div>
                     Bạn chưa có dự án Yêu thích nào
                   </div>
+
+                  {errorDelete && (
+                    <Message variant="alert-danger">{errorDelete}</Message>
+                  )}
+                  {errorAddCard && (
+                    <Message variant="alert-danger">{errorAddCard}</Message>
+                  )}
+                  {loading ? (
+                    <Loading />
+                  ) : error ? (
+                    <Message variant="alert-danger">{error}</Message>
+                  ) : (
+                    card?.map((cart, index) => (
+
                 )}
                 {numCart !== 0 && (
                   <div className="item_cart">
@@ -255,6 +274,7 @@ function Header({ indexCart }) {
                       Danh Mục Yêu Thích Của Bạn
                     </div>
                     {CartData?.map((cart, index) => (
+
                       <div
                         key={index}
                         className="item_cart_show"
@@ -280,9 +300,16 @@ function Header({ indexCart }) {
                           </div>
                         </div>
                       </div>
+
+                    )))
+                  }
+
+                </div>
+
                     ))}
                   </div>
                 )}
+
               </div>
               <div className="item_div_conf">
                 <IoNotifications className="IConf_icon" />

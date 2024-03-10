@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Product from "./Product";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "~/Loading/Loading";
+import Message from "~/Loading/Error";
+import { listProducts } from "~/redux/Actions/ProductActions";
 // import { useDispatch, useSelector } from "react-redux";
 // import { listProducts } from "../../Redux/Actions/ProductActions";
 // import { listProducts } from "../../pages/redux/Actions/ProductActions";
@@ -65,23 +69,26 @@ const MainProducts = () => {
     ];
 
 
+    const productList = useSelector((state) => state.productList);
+    const { loading, error, listProduct } = productList;
+
 
     const recordsPerPage = 8;
     // const Data = useSelector((state) => state.productList.products);
     const totalPages = Math.ceil(Data.length / recordsPerPage);
     const firstIndex = (currentPage - 1) * recordsPerPage;
     const lastIndex = currentPage * recordsPerPage;
-    const slicedProducts = Data?.slice(firstIndex, lastIndex);
+    const slicedProducts = listProduct?.slice(firstIndex, lastIndex);
 
-    // const productList = useSelector((state) => state.productList);
-    // const { loading, error, products } = productList;
 
-    // const productDelete = useSelector((state) => state.productDelete);
-    // const { error: errorDelete, success: successDelete } = productDelete;
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(listProducts());
-    // }, [dispatch, successDelete]);
+    const deletePro = useSelector((state) => state.deleteProduct);
+    const { error: errorDelete, success: successDelete } = deletePro;
+
+    useEffect(() => {
+        dispatch(listProducts());
+    }, [dispatch, successDelete]);
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -100,22 +107,18 @@ const MainProducts = () => {
             <div className="product--container">
 
                 <div className="product--container-detail">
-                    {/* {errorDelete && (
+                    {errorDelete && (
                         <Message variant="alert-danger">{errorDelete}</Message>
                     )}
                     {loading ? (
                         <Loading />
                     ) : error ? (
                         <Message variant="alert-danger">{error}</Message>
-                    ) : ( */}
-
-                    {/* Products */}
-                    {slicedProducts.map((product) => (
-                        <Product product={product} key={product.productId} />
-                    ))}
-
-                    {/* )} */}
-
+                    ) : (
+                        slicedProducts?.map((product) => (
+                            <Product product={product} key={product.productId} />
+                        )
+                        ))}
                 </div>
 
             </div>

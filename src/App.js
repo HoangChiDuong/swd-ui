@@ -53,7 +53,7 @@ function App() {
 
           </Route>
           <Route element={<BaseLayout />}>
-            <Route path="/admin" element={<Dashboard />} />
+            <Route path="//admin/dashboard" element={<Dashboard />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
