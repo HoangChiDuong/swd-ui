@@ -99,7 +99,7 @@
         }
         .price_viewer {
           margin-top: 20px;
-          width: 80%;
+          width: fit-content;
           padding: 10px 20px;
           display: flex;
           justify-content:left;
@@ -114,6 +114,7 @@
           }
           .price_viewer_data{
             position: relative;
+            margin-right: 100px;
             font-size: 38px;
             font-weight: 600;
             color: rgb(233, 37, 37);

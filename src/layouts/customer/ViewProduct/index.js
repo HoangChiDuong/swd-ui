@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "~/components/Header";
 import { useLocation } from "react-router-dom";
-import NewAddress from "~/components/CreateQuote";
 import "~/layouts/customer/ViewProduct/ViewProduct.scss";
 import numeral from "numeral";
 import Login from "~/components/Authors/Login";
@@ -10,6 +9,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "~/redux/Actions/CardActions";
 import Footer from "~/components/Footer";
+import CreateQuote from "~/components/CreateQuote";
+import Loading from "~/Loading/Loading";
+import PopupConfirm from "~/components/PopupConfirm";
 
 const ViewProduct = () => {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
@@ -23,20 +25,21 @@ const ViewProduct = () => {
   const [showAddNewAddress, setShowAddNewAddress] = useState(false);
   const [firstImage, setFirstImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [content, setContent] = useState(false);
   useEffect(() => {
     console.log(accessToken);
     axios
-      .get(`https://localhost:7058/api/Poduct/GetProduct?Idproduct=${Idproduct}`)
+      .get(
+        `https://localhost:7058/api/Poduct/GetProduct?Idproduct=${Idproduct}`
+      )
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setProductDetails(response.data);
         setFirstImage(response.data.images[0].imagePath);
-
       })
       .catch((error) => {
         console.error("There was an error!", error);
-      })
+      });
   }, [Idproduct]);
   const [productDetails, setProductDetails] = useState();
   const ClickChildImg = (img, index) => {
@@ -45,17 +48,40 @@ const ViewProduct = () => {
   };
   const handleAddNewAddress = () => {
     setShowAddNewAddress(true);
-  };
+  }; 
+  const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+const disres = true;
   const addToCart = () => {
     if (userAuth.Id == "") {
       setShowLogin(true);
     } else {
-      dispatch(addCart(userAuth.Id, Idproduct));
+     
+      axios
+        .post(
+          `https://localhost:7058/api/Cart/AddToCart?userId=${userAuth.Id}&productId=${Idproduct}`,
+          config
+        )
+        .then((response) => {
+          if (response.data !== "") {
+            
+            dispatch(addCart(userAuth.Id));
+            setContent(response.data)
+            setIsLoading(true);
+          }
+        });
     }
   };
+
   return (
     <div>
       {showLogin && <Login setShowLogin={setShowLogin} />}
+      {isLoading && (
+        <PopupConfirm setIsLoading={setIsLoading} content={content} />
+      )}
       <div className="home">
         <Header indexCart={load} />
         <div className="product_view">
@@ -66,8 +92,9 @@ const ViewProduct = () => {
                 {productDetails?.images.map((image, index) => (
                   <div
                     key={index}
-                    className={`child_image ${index === selectedImage ? "selected" : ""
-                      }`}
+                    className={`child_image ${
+                      index === selectedImage ? "selected" : ""
+                    }`}
                   >
                     <img
                       src={image.imagePath}
@@ -122,7 +149,10 @@ const ViewProduct = () => {
               </div>
 
               <div className="order">
-                <button className="addButton" onClick={() => addToCart(productDetails?.productId)}>
+                <button
+                  className="addButton"
+                  onClick={() => addToCart(productDetails?.productId)}
+                >
                   <IoHeartSharp className="iconAdd" />
                   Thêm Vào Mục Yêu Thích
                 </button>
@@ -133,7 +163,6 @@ const ViewProduct = () => {
               </div>
             </div>
           </div>
-
 
           <div className="product_introduce">
             <div className="title_des">
@@ -158,18 +187,18 @@ const ViewProduct = () => {
               ))}
             </div>
           </div>
-          <Footer/>
         </div>
+        <Footer />
       </div>
       {showAddNewAddress && (
-        <NewAddress
-          //setShowNotification={setShowNotification}
+        <CreateQuote
+          productId={Idproduct}
           setShowAddNewAddress={setShowAddNewAddress}
-        // accessToken={accessToken}
+          setIsLoading={setIsLoading}
+          setContent={setContent}
         />
       )}
     </div>
   );
-
 };
 export default ViewProduct;

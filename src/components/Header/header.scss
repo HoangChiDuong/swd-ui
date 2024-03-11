@@ -324,9 +324,22 @@
       }
       .item_div_more {
         position: relative;
+        display: flex;
         &:hover {
           .item_more_show {
             display: block;
+          }
+        }
+        .info_user_more1{
+          cursor: pointer;
+          border-radius: 50%;
+          padding:9px;
+          height: 50px;
+          width: 50px;
+          transition: 0.3s ease-in;
+          margin: 15px 0 20px 0;
+          &:hover {
+            background-color: #bfcdd4c7;
           }
         }
         .info_user_more {
@@ -337,9 +350,6 @@
           width: 24px;
           transition: 0.3s ease-in;
           margin: 30px 0;
-          &:hover {
-            background-color: #bfcdd4c7;
-          }
         }
         .item_more_show {
           display: none;
@@ -347,7 +357,7 @@
           width: 350px;
           position: absolute;
           padding: 7px 7px 7px 10px;
-          top: 75px;
+          top: 82px;
           right: -16px;
           background-color: #fff;
           border-radius: 20px 3px 3px 20px;

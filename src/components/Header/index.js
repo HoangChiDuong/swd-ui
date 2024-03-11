@@ -38,14 +38,19 @@ function Header({ indexCart }) {
   const handleLogOut = () => {
     logOut(dispatch, navigate);
   };
+  const [user, setUser] = useState();
 
-  const user = {
-    userName: "Hoàng Chí Dương",
-    date: "23/03/2002",
-    email: "Goat@gmail.com",
-    phone: "0785947818",
-    img: "",
-  };
+  useEffect(() => {
+    axios
+      .get(`https://localhost:7058/api/User/UserInfo?userId=${userAuth.Id}`)
+      .then((response) => {
+        console.log(response.data);
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  }, [userAuth.Id]);
 
   const cardDetail = useSelector((state) => state.getCardDetail) || {};
   const { loading, error, card } = cardDetail;
@@ -156,7 +161,7 @@ function Header({ indexCart }) {
     }
   };
   const goViewQuote = () => {
-    navigate("/TienTrinhYeuCau");
+    navigate("/ProgressRequest");
   };
   return (
     <div className="header">
@@ -237,12 +242,7 @@ function Header({ indexCart }) {
           {userAuth.Id !== "" && (
             <div className="itemLog-cart">
               <div className="item_div">
-                <IoHeartSharp
-                  className="ImCart-icon"
-                  onClick={() => {
-                    handleLogoClick("Login");
-                  }}
-                />
+                <IoHeartSharp className="ImCart-icon" />
 
                 {numCart !== 0 && <div className="item_num">{numCart}</div>}
                 {numCart === 0 && (
@@ -306,52 +306,53 @@ function Header({ indexCart }) {
                   <div className="item_num_conf">{numConF}</div>
                 )}
               </div>
-              <div className="item_div_login">
+              {/* <div className="item_div_login">
                 <FaUserCircle
                   className="ImLogin-icon"
                   onClick={() => {
                     handleLogoClick("Login");
                   }}
                 />
-              </div>
+              </div> */}
               <div className="item_div_more">
+                <FaUserCircle className="info_user_more1" />
                 <IoChevronDown className="info_user_more" />
                 <div className="item_more_show">
                   <div className="item_status">Đang Hoạt Động</div>
                   <div className="item_info">
                     <div className="img_user">
-                      {user.img === "" && (
+                      {user?.images === null && (
                         <div className="img_user_data">
-                          {filterName(userAuth.UserName)}
+                          {filterName(user?.userName)}
                         </div>
                       )}
-                      {!userAuth && (
+                      {!user && (
                         <img
                           className="img_user_data"
                           src={""}
-                          alt={userAuth.UserName}
+                          alt={user?.userName}
                         />
                       )}
                     </div>
-                    <div className="name_user">{userAuth.UserName}</div>
+                    <div className="name_user">{user?.userName}</div>
                   </div>
                   <div className="profile_staus">Tài khoản của bạn</div>
                   <div className="item_profile">
                     <div className="item_profile_user">
                       <div className="profile_user">Vai trò:</div>
-                      <div className="profile_user">Người dùng</div>
+                      <div className="profile_user">{user?.position}</div>
                     </div>
                     <div className="item_profile_user">
                       <div className="profile_user">Email:</div>
-                      <div className="profile_user">{userAuth.Email}</div>
+                      <div className="profile_user">{user?.email}</div>
                     </div>
                     <div className="item_profile_user">
                       <div className="profile_user">Số điện thoại:</div>
-                      <div className="profile_user">{user.phone}</div>
+                      <div className="profile_user">{user?.phone}</div>
                     </div>
                     <div className="item_profile_user">
                       <div className="profile_user">Ngày sinh:</div>
-                      <div className="profile_user">{user.date}</div>
+                      <div className="profile_user">{user?.date}</div>
                     </div>
                   </div>
                   <div className="profile_staus">Tiến trình Đơn</div>
