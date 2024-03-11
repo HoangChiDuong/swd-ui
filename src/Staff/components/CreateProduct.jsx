@@ -258,26 +258,26 @@ const CreateProduct = () => {
                 )}
               </div>
               <div className="mb-4">
-    <label htmlFor="product_title" className="form-label">
-        Loại Dự Án
-    </label>
-    <select
-        className="form-control"
-        id="product_title"
-        required
-        
-        onChange={(e) => setCateId(parseInt(e.target.value))}
-    >
-        <option value={1}>Nhà Chung Cư</option>
-        <option value={2}>Nhà Phố</option>
-        <option value={3}>Phòng Ngủ</option>
-        <option value={4}>Phòng Khách</option>
-        <option value={5}>Phòng Bếp</option>
-    </select>
-    {formErrors.CateId && (
-        <div className="text-danger">{formErrors.CateId}</div>
-    )}
-</div>
+                <label htmlFor="product_title" className="form-label">
+                  Loại Dự Án
+                </label>
+                <select
+                  className="form-control"
+                  id="product_title"
+                  required
+
+                  onChange={(e) => setCateId(parseInt(e.target.value))}
+                >
+                  <option value={1}>Nhà Chung Cư</option>
+                  <option value={2}>Nhà Phố</option>
+                  <option value={3}>Phòng Ngủ</option>
+                  <option value={4}>Phòng Khách</option>
+                  <option value={5}>Phòng Bếp</option>
+                </select>
+                {formErrors.CateId && (
+                  <div className="text-danger">{formErrors.CateId}</div>
+                )}
+              </div>
               <div className="mb-4">
                 <label className="form-label">Mô Tả Chung</label>
                 <textarea
