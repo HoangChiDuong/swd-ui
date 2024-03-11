@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "~/components/CreateQuote/CreateQuote.scss";
 import SelectAddress from "../SelectAddress";
 import axios from "axios";
-const NewAddress = ({
+const CreateQuote = ({
   setShowAddNewAddress,
-  //   setShowNotification,
-  //   accessToken,
+  productId,
+  setIsLoading,
+  setContent,
 }) => {
+  const userAuth = useSelector((state) => state.auth.login.currentUser);
+  const accessToken = localStorage.getItem("jwtToken");
   const [phone, setPhone] = useState("");
   const [fullName, setFullName] = useState("");
   const [date, setDate] = useState("");
@@ -27,6 +31,7 @@ const NewAddress = ({
   const [MsAddress, setMsAddress] = useState(false);
   const [MsAddressDetails, setMsAddressDetails] = useState(false);
   const [MsAllNull, setMsAllNull] = useState(false);
+
   useEffect(() => {
     const apiProvince = () => {
       axios.get("https://vapi.vnappmob.com/api/province").then((response) => {
@@ -53,6 +58,7 @@ const NewAddress = ({
       setDistrictag(1);
     }
   }, [Districtag]);
+
   useEffect(() => {
     const apiWard = () => {
       axios
@@ -92,6 +98,16 @@ const NewAddress = ({
     setShowAddNewAddress(false);
     //setShowNotification(true);
   };
+  const CreateRequestModel = {
+    Address: `${addressDetails}/ ${Ward}/ ${District}/${City}`,
+    Email: email,
+    ProductId: productId,
+    Status: "1",
+    UserId: userAuth.Id,
+    Phone: phone,
+    UserName: fullName,
+    Date: date.toString(),
+  };
   const handleSubmit = () => {
     switch (true) {
       case !fullName || /\d/.test(fullName):
@@ -107,15 +123,23 @@ const NewAddress = ({
         setMsAddressDetails(true);
         break;
       default:
-        // axios.post("https://localhost:7241/api/Order/AddressOder", NewAddressAdd, {
-        //      headers: {
-        //           Authorization: `Bearer ${accessToken}`
-        //      }
-        // })
-        //      .then(response => {
-        //           setShowAddNewAddress(false);
-        //           setShowNotification(true);
-        //      })
+        axios
+          .post(
+            "https://localhost:7058/api/Request/CreateRequest",
+            CreateRequestModel,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          )
+          .then((response) => {
+            if (response.data == "Success") {
+              setContent("Bạn Đã Gửi Yêu Cầu Thành Công");
+              setShowAddNewAddress(false);
+              setIsLoading(true);
+            }
+          });
         break;
     }
   };
@@ -170,7 +194,6 @@ const NewAddress = ({
               <div id="massage-er-input">Bạn vui lòng điền Email!</div>
             )}
           </div>
-         
         </div>
         <div className="Address-log-add ">
           <SelectAddress
@@ -241,7 +264,7 @@ const NewAddress = ({
           <button className="button_Cancel" onClick={handleCancelAdd}>
             Hủy
           </button>
-          <button className="button_Submit" onClick={handleSubmit}>         
+          <button className="button_Submit" onClick={handleSubmit}>
             Gửi
           </button>
         </div>
@@ -249,4 +272,4 @@ const NewAddress = ({
     </div>
   );
 };
-export default NewAddress;
+export default CreateQuote;

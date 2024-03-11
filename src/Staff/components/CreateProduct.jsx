@@ -250,7 +250,7 @@ const CreateProduct = () => {
                   className="form-control"
                   id="product_price"
                   required
-                  value={numeral(Price).format("0,0")}
+                  value={Price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 {formErrors.Price && (
