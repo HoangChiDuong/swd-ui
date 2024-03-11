@@ -11,9 +11,10 @@ import {
     REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { staffListReducer, userInfoReducer } from './Reducers/UserReducers';
+import { staffListReducer, staffStatusReducer, userInfoReducer } from './Reducers/UserReducers';
 import { productDeleteReducer, productListReducer } from './Reducers/ProductReducers';
 import { addCardReducer, deleteCardReducer, getCardDeatilReducer } from './Reducers/CardReducers';
+import { RequestListReducer } from './Reducers/RequestReducer';
 
 
 
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
     addCard: addCardReducer,
     getCardDetail: getCardDeatilReducer,
     deleteCard: deleteCardReducer,
-
+    listRequest: RequestListReducer,
+    listStaffStatus: staffStatusReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
