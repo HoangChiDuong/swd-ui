@@ -1,4 +1,4 @@
-import { LIST_STAFF_FAIL, LIST_STAFF_REQUEST, LIST_STAFF_RESET, LIST_STAFF_SUCCESS, USER_INFO_FAIL, USER_INFO_REQUEST, USER_INFO_RESET, USER_INFO_SUCCESS } from "../Constants/UserConstants";
+import { LIST_STAFF_FAIL, LIST_STAFF_REQUEST, LIST_STAFF_RESET, LIST_STAFF_SUCCESS, STAFF_STATUS_FAIL, STAFF_STATUS_REQUEST, STAFF_STATUS_RESET, STAFF_STATUS_SUCCESS, USER_INFO_FAIL, USER_INFO_REQUEST, USER_INFO_RESET, USER_INFO_SUCCESS } from "../Constants/UserConstants";
 
 
 
@@ -29,6 +29,21 @@ export const userInfoReducer = (state = { user: {} }, action) => {
             return { loading: false, error: action.payload };
         case USER_INFO_RESET:
             return { product: {} };
+        default:
+            return state;
+    }
+};
+
+export const staffStatusReducer = (state = { staff: [] }, action) => {
+    switch (action.type) {
+        case STAFF_STATUS_REQUEST:
+            return { loading: true };
+        case STAFF_STATUS_SUCCESS:
+            return { loading: false, staffs: action.payload };
+        case STAFF_STATUS_FAIL:
+            return { loading: false, error: action.payload };
+        case STAFF_STATUS_RESET:
+            return { users: [] };
         default:
             return state;
     }
