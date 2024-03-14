@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { staffListReducer, staffStatusReducer, userInfoReducer } from './Reducers/UserReducers';
-import { productDeleteReducer, productListReducer } from './Reducers/ProductReducers';
+import { confirmRequestReducer, productDeleteReducer, productListReducer } from './Reducers/ProductReducers';
 import { addCardReducer, deleteCardReducer, getCardDeatilReducer } from './Reducers/CardReducers';
 import { RequestListReducer } from './Reducers/RequestReducer';
 
@@ -36,6 +36,7 @@ const rootReducer = combineReducers({
     deleteCard: deleteCardReducer,
     listRequest: RequestListReducer,
     listStaffStatus: staffStatusReducer,
+    confirmRequest: confirmRequestReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

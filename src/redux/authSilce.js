@@ -11,6 +11,7 @@ const authSlice = createSlice({
                 Role: "",
                 role: "",
                 iss: "",
+                ManageId: "",
 
             },
             isFetching: false,
@@ -69,6 +70,7 @@ const authSlice = createSlice({
                 Role: "",
                 role: "",
                 iss: "",
+                ManageId: "",
 
             };
             state.logout.error = false;

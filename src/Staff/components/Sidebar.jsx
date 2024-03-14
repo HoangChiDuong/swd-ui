@@ -8,11 +8,12 @@ import { LiaFileContractSolid } from "react-icons/lia";
 import "../styles/Sidebar.css";
 import logo from '~/assets/LogoSWD.png'
 import { logOut } from "~/redux/apiRequest";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const staff = useSelector((state) => state.auth.login.currentUser);
     const handleLogOut = () => {
         logOut(dispatch, navigate);
     };
@@ -24,27 +25,32 @@ const Sidebar = () => {
             <div className="menu--list">
                 <a href="/staff/dashboard" className="item active">
                     <BiHome className="icon" />
-                    Thống Kê
+                    {(staff.ManageId === "") ? "Thống Kê" : "Công Việc"}
                 </a>
             </div>
-            <div className="menu--list">
-                <a href="/staff/assignment" className="item">
-                    <BiTask className="icon" />
-                    Yêu Cầu Báo Giá
-                </a>
-            </div>
-            <div className="menu--list">
-                <a href="/staff/product" className="item">
-                    <RiProductHuntLine className="icon" />
-                    Sản Phẩm
-                </a>
-            </div>
-            <div className="menu--list">
+            {(staff.ManageId === "") && (
+                <>
+                    <div className="menu--list">
+                        <a href="/staff/assignment" className="item">
+                            <BiTask className="icon" />
+                            Yêu Cầu Báo Giá
+                        </a>
+                    </div>
+                    <div className="menu--list">
+                        <a href="/staff/product" className="item">
+                            <RiProductHuntLine className="icon" />
+                            Sản Phẩm
+                        </a>
+                    </div>
+                    {/* <div className="menu--list">
                 <a href="/staff/product" className="item">
                     <LiaFileContractSolid className="icon" />
                     Tạo Hợp Đồng
                 </a>
-            </div>
+            </div> */}
+
+                </>
+            )}
             <div className="menu--list">
                 <a className="item" onClick={handleLogOut}>
                     <IoLogOutOutline className="icon" />
@@ -52,6 +58,7 @@ const Sidebar = () => {
                     Đăng Xuất
                 </a>
             </div>
+
         </div>
     )
 }

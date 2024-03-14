@@ -3,27 +3,56 @@ import DataTable from "react-data-table-component";
 import '../styles/Assignment.css';
 import { MdDeleteOutline } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "~/Loading/Loading";
 import Message from "~/Loading/Error";
+import { confirmRequest, listRequest } from "~/redux/Actions/RequestActions";
+import { CgSandClock } from "react-icons/cg";
+import { listStaff, listStaffStatus } from "~/redux/Actions/UserActions";
+import { FaFileContract } from "react-icons/fa";
+import { LuCircleDollarSign } from "react-icons/lu";
 const Assignment = () => {
+
+    const dispatch = useDispatch();
     const reqList = useSelector((state) => state.listRequest);
     const { loading, error, listReq } = reqList;
 
-    const staffList = useSelector((state) => state.listStaffStatus);
-    const { loadingstaffList, errorstaffList, listST } = staffList;
 
-    const [data, setData] = useState(listReq);
+    const ListST = useSelector((state) => state.listStaffStatus);
+    const { loadingstaffList, errorstaffList, staffs } = ListST;
+    const createTask = useSelector((state) => state.confirmRequest);
+
+    const { error: errorCreate, success: successCreate } = createTask;
+
+    const [data, setData] = useState();
+
+    const userAuth = useSelector((state) => state.auth.login.currentUser);
+
+    useEffect(() => {
+        dispatch(listRequest());
+        dispatch(listStaffStatus(userAuth.Id));
+    }, [dispatch, successCreate, errorCreate])
 
 
-    console.log(data)
+
+
+    useEffect(() => {
+        setData(listReq);
+    }, [listReq])
     const [loadingss, setLoading] = useState(false);
     const [errorss, setError] = useState(null);
 
-    const handleFilter = (event) => {
+    const handleFilter = (event, row) => {
         setLoading(true);
         try {
-            const newData = data.filter(row => row.Task.toLowerCase().includes(event.target.value.toLowerCase()));
+            const selectedStaffId = event.target.value;
+            const newData = data.map((rowData) =>
+                rowData.requestId === row.requestId
+                    ? { ...rowData, assignedStaffId: selectedStaffId }
+                    : rowData
+            );
+
+            // Update the state with the new data
             setData(newData);
         } catch (error) {
             setError("An error occurred while filtering data.");
@@ -32,22 +61,19 @@ const Assignment = () => {
         }
     };
 
-    const handleEdit = (row) => {
-        // Implement edit functionality
-        console.log("Edit row:", row);
+
+    const handleConfirm = (requestId) => {
+        const updatedRow = data.find((row) => row.requestId === requestId);
+        const assignedStaffId = updatedRow ? Number(updatedRow.assignedStaffId) : null;
+        dispatch(confirmRequest(requestId, assignedStaffId));
     };
 
-    const handleDelete = (row) => {
-        // Implement delete functionality
-        console.log("Delete row:", row);
-    };
-
-    const statusOptions = listST;
 
     const columns = [
         {
             name: "Id",
             selector: row => row.requestId,
+
         },
         {
             name: "Tên",
@@ -78,27 +104,49 @@ const Assignment = () => {
             name: "Sắp xếp",
             cell: row => (
                 <select
-                    value={row.status}
-                    onChange={(e) => {
-                        // Implement status change functionality
-                        console.log("Status changed to:", e.target.value);
-                    }}
+                    value={row.assignedStaffId}
+                    onChange={(e) => handleFilter(e, row)}
                 >
-                    {statusOptions.map(option => (
-                        <option key={option} value={option}>{option}</option>
+                    <option value="" className="staff--list">Xếp</option>
+                    {staffs?.map(option => (
+                        <option key={option.userId} value={option.userId} className="staff--list">{option.userName}</option>
                     ))}
                 </select>
             ),
         },
         {
-            name: "Actions",
-            cell: row => (
-                <div className="action-buttons">
-                    <button onClick={() => handleEdit(row)}><MdDeleteOutline /></button>
-                    <button onClick={() => handleDelete(row)}><CiEdit /></button>
-                </div>
-            ),
-        },
+            cell: (row) => {
+                if (row.status === "1") {
+                    return (
+                        <div className="action-buttons">
+                            <button onClick={() => handleConfirm(row.requestId)}><CiEdit /></button>
+                        </div>
+                    );
+                } else if (row.status === "2") {
+                    return (
+                        <div className="assign__await" >
+                            <div ><CgSandClock className="assign--icon" /></div>
+                        </div>
+                    );
+                } else if (row.status === "3") {
+                    return (
+                        <div className="assign__await" >
+                            <div ><FaFileContract className="assign--icon" /></div>
+                        </div>
+                    );
+                }
+                else if (row.status === "4") {
+                    return (
+                        <div className="assign__await" >
+                            <div ><LuCircleDollarSign className="assign--icon" /></div>
+                        </div>
+                    );
+                }
+                else {
+                    return null; // No action buttons for other statuses
+                }
+            },
+        }
     ];
 
     return (
