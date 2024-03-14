@@ -1,26 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import Product from "~/components/Product";
 import "~/layouts/customer/ViewProductCate/ViewProductCate.scss";
 const ViewProductCate = () => {
-  const [Products,setProducts] = useState() 
+  const [Products, setProducts] = useState();
   const navigate = useNavigate();
   const location = useLocation();
   const des = location.state.id;
   useEffect(() => {
-    if (des === "cate1" || des === "cate2") {
-    } else if (des !== "cate1" && des !== "cate2") {
-      axios.get(
+    axios
+      .get(
         `https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${des}`
-      ).then((response) => {
+      )
+      .then((response) => {
         console.log(response.data);
-        setProducts(response.data)
+        setProducts(response.data);
       });
-    }
   }, [des]);
-  
+
   const handleProductClick = (productId) => {
     navigate("/ProductDetail", { state: { productId } });
   };
@@ -30,7 +30,7 @@ const ViewProductCate = () => {
       <div className="view_cate_product">
         <div className="view_cate_show">
           <img
-            src="./SlideShow.png"
+            src="../GOATINTERIOR.png"
             className="view_cate_show_img"
             alt="SlideShow"
           />
@@ -50,6 +50,7 @@ const ViewProductCate = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

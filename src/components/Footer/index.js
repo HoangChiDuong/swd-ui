@@ -21,7 +21,7 @@ function Footer({}) {
             />
           </div>
           <div className="info_cpn">
-            Tuvan@noithatmanhhe.vn <br />
+            Email: goatinterior@gmail.com <br />
             Hotline: 0397 337 051 - Tel: 0869.048.791 <br />
             Thời gian làm việc 8:00 - 17:00 (Th2 - Th7)  <br />
             Giấy ĐKKD Số: ****** cấp ngày 31/02/2024 tại Hồ Chí Minh  <br />

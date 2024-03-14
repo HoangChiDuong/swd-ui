@@ -14,6 +14,7 @@ import {
 export const addCart = (userid) => async (dispatch) => {
   try {
     dispatch({ type: ADD_CARD_REQUEST });
+
     await axios.get(`https://localhost:7058/api/Cart/LoadAdd`);
 
     dispatch({ type: ADD_CARD_SUCCESS });

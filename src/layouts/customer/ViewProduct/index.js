@@ -27,7 +27,7 @@ const ViewProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState(false);
   useEffect(() => {
-    console.log(accessToken);
+    console.log(Idproduct);
     axios
       .get(
         `https://localhost:7058/api/Poduct/GetProduct?Idproduct=${Idproduct}`
