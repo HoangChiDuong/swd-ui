@@ -6,6 +6,7 @@ import { CiCalendarDate } from "react-icons/ci";
 import { MdOutlineMail } from "react-icons/md";
 import { MdOutlineLocalPhone } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { GiPositionMarker } from "react-icons/gi";
 const Profile = () => {
     const user = useSelector((state) => state.userInfo.user);
     // const { error: errorDelete, success: successDelete } = productDelete;
@@ -19,11 +20,18 @@ const Profile = () => {
                     <img src={(user && user.images) ? user.images : avatar} />
 
                     <h3 className="username">{user?.userName || null}</h3>
-
-                    <span className="profession">{user?.position || null}</span>
-
                 </div>
                 <div className="user--courses">
+                    <div className="courses">
+                        <div className="courses--detail">
+                            <div className="courses--cover">
+                                <GiPositionMarker />
+                            </div>
+                            <div className="courses-name">
+                                <input type="text" className="title" placeholder={user?.position || null} />
+                            </div>
+                        </div>
+                    </div>
                     <div className="courses">
                         <div className="courses--detail">
                             <div className="courses--cover">
