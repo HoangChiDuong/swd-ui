@@ -408,6 +408,7 @@ const CreateProduct = () => {
                     >
                       <input
                         type="file"
+                        accept="image"
                         onChange={(e) => {
                           handleFileChange(e);
                         }}

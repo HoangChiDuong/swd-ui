@@ -44,8 +44,8 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/ProductDetail" element={<ViewProduct />} />
             <Route path="/ProductByCate" element={<ViewProductCate />} />
-            <Route path="/ProgressRequest" element={<ViewQuotes />} />
-
+            <Route path="/ProgressRequest/" element={<Navigate to="/ProgressRequest/NewRequest" />} />
+            <Route path="/ProgressRequest/*" element={<ViewQuotes />} />
           </Route>
           {(userAuth.Role === "ST") && (
             <Route element={<AppStaff />}>

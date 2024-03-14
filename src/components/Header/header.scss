@@ -4,12 +4,11 @@
   height: 80px;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 2000;
   box-shadow: 0px 1px 7px rgb(91, 103, 107);
   display: flex;
   background-color: #fff;
   border-radius: 0px 0px 7px 7px;
-  z-index: 1000;
 
   .header-view {
     height: fit-content;
@@ -127,6 +126,7 @@
 
       .sub-items {
         position: absolute;
+        z-index: 2000;
         top: 100%;
         left: 0;
         background-color: #fff;

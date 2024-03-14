@@ -44,7 +44,7 @@ function Header({ indexCart }) {
     axios
       .get(`https://localhost:7058/api/User/UserInfo?userId=${userAuth.Id}`)
       .then((response) => {
-        console.log(response.data);
+
         setUser(response.data);
       })
       .catch((error) => {
@@ -109,10 +109,10 @@ function Header({ indexCart }) {
         navigate("/home");
         break;
       case "Thiết Kế Nội Thất Nguyên Căn":
-        navigate("/ProductByCate", { state: { id: "cate1" } });
+        navigate("/ProductByCate", { state: { id: 10 } });
         break;
       case "Thiết Kế Nội Thất Theo Phòng":
-        navigate("/ProductByCate", { state: { id: "cate2" } });
+        navigate("/ProductByCate", { state: { id: 11 } });
         break;
       case "Liên Hệ":
         window.location.href = "/desktop-screen";
@@ -174,7 +174,7 @@ function Header({ indexCart }) {
             handleLogoClick("Trang Chủ", 0);
           }}
         >
-          <img src="./logo-removebg-preview.png" alt="logo" />
+          <img src="../../logo-removebg-preview.png" alt="logo" />
         </div>
         <div className="headContent-view">
           <div className="headSearch-view">

@@ -107,7 +107,7 @@ const HomePage = () => {
                 của chúng tôi!
               </div>
               <div className="intro_2">
-                Lý do làm nội thất trọn gói nên chọn Mạnh Hệ
+                Lý do làm nội thất trọn gói nên chọn GOAT INTERIOR
               </div>
               <div className="intro_3">
                 <li>Đội KTS chuyên nghiệp - bản vẽ đạt chuẩn</li>
