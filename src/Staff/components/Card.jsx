@@ -7,6 +7,7 @@ import { FcSurvey } from "react-icons/fc";
 const Card = () => {
     const users = useSelector((state) => state.staffList.users);
     const products = useSelector((state) => state.productList.listProduct);
+    const request = useSelector((state) => state.listRequest.listReq);
 
 
 
@@ -27,7 +28,7 @@ const Card = () => {
             <div className="card">
                 <div className="card--cover"><FcSurvey /></div>
                 <div className="card--title">
-                    <h2>Y/c Báo Giá:{users ? users.length : 0}</h2>
+                    <h2>Y/c Báo Giá:{request ? request.length : 0}</h2>
                 </div>
             </div>
         </div>
