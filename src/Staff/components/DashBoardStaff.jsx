@@ -21,20 +21,20 @@ const DashboardStaff = () => {
     return (
         <div className="dashboard--content">
 
-    {staff.ManageId === "" && (
-        <>
-        <Content />
-           <Profile />
-        </>
-      )}
-      {staff.ManageId !== "" && (
-        <>
-          <ViewTask />
-          
-        </>
-      )}
-          
-           
+            {staff.ManageId === "" && (
+                <>
+                    <Content />
+                    <Profile />
+                </>
+            )}
+            {staff.ManageId !== "" && (
+                <>
+                    <ViewTask />
+
+                </>
+            )}
+
+
         </div>
     )
 }

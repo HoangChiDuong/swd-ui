@@ -2,10 +2,11 @@ import { PDFDocument, rgb } from "pdf-lib";
 import React, { useEffect, useState } from "react";
 import logo_admin from "../../assets/images/logo_admin.png";
 import './ContractDetail.css';
+import axios from "axios";
 
 const ContractDetail = ({ contractFile, contractId, onClose }) => {
 
-    contractFile = "https://localhost:7058//Upload//contract//1//2. Quy định thi PE môn PRN221.pdf"
+
 
     const [contractFileapi, setContractFileapi] = useState();
     const [gopay, setGopay] = useState(false);
@@ -15,6 +16,28 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
     const handleContractDetailClose = () => {
         onClose(false);
     };
+    const handleSubmit = () => {
+        const formData = new FormData();
+        formData.append("contractId", contractId);
+        formData.append("contractfile", contractFileapi);
+
+        console.log(formData)
+
+        axios.post(
+            `https://localhost:7058/api/Admin/ConfirmContract`, formData
+        )
+            .then((response) => {
+                if (response !== null) {
+                    onClose(false);
+                }
+            })
+            .catch((error) => {
+                console.error("There was an error!", error);
+            });
+
+
+
+    };
 
     const addSignatureToPDF = async () => {
         try {
@@ -23,7 +46,7 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
             ).then((res) => res.arrayBuffer());
 
             const pdfDoc = await PDFDocument.load(existingPdfBytes);
-            const page = pdfDoc.getPage(0);
+            const page = pdfDoc.getPage(2);
 
             const signatureImageBytes = await fetch(logo_admin).then((res) => res.arrayBuffer());
 
@@ -41,6 +64,7 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
             const pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
             const pdfUrl = URL.createObjectURL(pdfBlob);
             const data = await bufferToBase64(new Uint8Array(pdfBytes))
+            console.log(data)
             setContractFileapi(data);
 
             setSignedPdfUrl(pdfUrl);
@@ -64,9 +88,7 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
                 <div className="contract__close" >
                     <button className="close-button" onClick={handleContractDetailClose}>X</button>
                 </div>
-
                 <div className="contract_admin">
-
                     <div className="cotract_admin_title">
                         <h1>Hợp Đồng</h1>
 
@@ -91,7 +113,7 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
                 )}
 
                 <div className="contract__footer">
-                    <button className="button__save" onClick={onClose}>Hoàn tất</button>
+                    <button className="button__save" onClick={handleSubmit}>Hoàn tất</button>
                 </div>
             </div>
         </div>

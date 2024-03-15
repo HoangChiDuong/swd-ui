@@ -70,3 +70,4 @@ export const deleteProduct = (productId) => async (dispatch) => {
         });
     }
 };
+

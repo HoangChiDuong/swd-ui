@@ -41,7 +41,7 @@ function Header({ indexCart }) {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    if (userAuth.id !== null) {
+    if (userAuth.Id !== null) {
       axios
         .get(`https://localhost:7058/api/User/UserInfo?userId=${userAuth?.Id}`)
         .then((response) => {

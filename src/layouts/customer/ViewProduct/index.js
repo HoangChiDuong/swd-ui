@@ -41,11 +41,11 @@ const ViewProduct = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-      
+
   }, [Idproduct]);
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, [])
   const [productDetails, setProductDetails] = useState();
   const ClickChildImg = (img, index) => {
     setFirstImage(img);
@@ -53,12 +53,12 @@ const ViewProduct = () => {
   };
   const handleAddNewAddress = () => {
     setShowAddNewAddress(true);
-  }; 
+  };
   const config = {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
 
   const addToCart = () => {
     if (userAuth.Id === "") {
@@ -76,7 +76,7 @@ const ViewProduct = () => {
             dispatch(addCart(userAuth.Id));
             setContent(response.data)
             setIsLoading(true);
-           
+
           }
         });
     }
@@ -84,7 +84,7 @@ const ViewProduct = () => {
 
   return (
     <div>
-      {showLoad === true &&<LoadingFive/>}
+      {showLoad === true && <LoadingFive />}
       {showLogin && <Login setShowLogin={setShowLogin} />}
       {isLoading && (
         <PopupConfirm setIsLoading={setIsLoading} content={content} />
@@ -99,9 +99,8 @@ const ViewProduct = () => {
                 {productDetails?.images.map((image, index) => (
                   <div
                     key={index}
-                    className={`child_image ${
-                      index === selectedImage ? "selected" : ""
-                    }`}
+                    className={`child_image ${index === selectedImage ? "selected" : ""
+                      }`}
                   >
                     <img
                       src={image.imagePath}

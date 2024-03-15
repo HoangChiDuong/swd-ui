@@ -11,7 +11,6 @@ const Contract = () => {
     const [showContractDetail, setShowContractDetail] = useState(false);
 
     useEffect(() => {
-        console.log("assss")
         axios.get(
             `https://localhost:7058/api/Admin/GetContractAdmin`
         )
@@ -22,7 +21,7 @@ const Contract = () => {
             .catch((error) => {
                 console.error("There was an error!", error);
             });
-    }, [])
+    }, [showContractDetail])
 
     const handleButtonClick = (row) => {
         setSelectedFile(row.contractFile);
