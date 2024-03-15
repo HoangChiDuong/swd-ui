@@ -7,8 +7,12 @@ import Quoted from "~/components/RequestStatus/Quoted";
 import WaitSurvey from "~/components/RequestStatus/WaitSurvey";
 import "~/layouts/customer/ViewQuote/ViewQuote.scss";
 import AllRequest from "~/components/RequestStatus/AllRequest";
+import { useEffect } from "react";
 
 const ViewQuotes = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
   return (
     <div className="home">
       <div className="quote_page">

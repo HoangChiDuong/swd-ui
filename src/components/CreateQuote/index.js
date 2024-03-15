@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import "~/components/CreateQuote/CreateQuote.scss";
 import SelectAddress from "../SelectAddress";
 import axios from "axios";
+import LoadingFive from "../Loading";
 const CreateQuote = ({
   setShowAddNewAddress,
   productId,
@@ -31,6 +32,7 @@ const CreateQuote = ({
   const [MsAddress, setMsAddress] = useState(false);
   const [MsAddressDetails, setMsAddressDetails] = useState(false);
   const [MsAllNull, setMsAllNull] = useState(false);
+  const [showLoad, setShowLoad] = useState(false);
 
   useEffect(() => {
     const apiProvince = () => {
@@ -123,6 +125,7 @@ const CreateQuote = ({
         setMsAddressDetails(true);
         break;
       default:
+        setShowLoad(true)
         axios
           .post(
             "https://localhost:7058/api/Request/CreateRequest",
@@ -145,6 +148,7 @@ const CreateQuote = ({
   };
   return (
     <div className="confirmation-modal">
+      {showLoad === true &&<LoadingFive/>}
       <div className="log-add-newAddress">
         <div className="log-add-newAddress-tiltel"> Thông Tin</div>
         <div className="add-FullName-PhoneNumber">

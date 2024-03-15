@@ -19,6 +19,7 @@ const ViewProductCate = () => {
         console.log(response.data);
         setProducts(response.data);
       });
+      window.scrollTo(0, 0);
   }, [des]);
 
   const handleProductClick = (productId) => {
