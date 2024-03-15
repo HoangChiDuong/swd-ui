@@ -17,6 +17,7 @@ const NewRequest = () => {
   useEffect(() => {
     axios.post("https://localhost:7058/api/Request/GetRequestStatus",data)
     .then((response) => {
+      console.log(response.data);
      setQuoteData(response.data)
     });
   }, [userAuth.Id]);

@@ -65,7 +65,10 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
     setSignedPdfUrl(quoteData.contracData.contracFile);
   };
   const [signature, setSignature] = useState(null);
+
+  
   const addSignatureToPDF = async (signature) => {
+    
     try {
       const existingPdfBytes = await fetch(
         quoteData.contracData.contracFile
