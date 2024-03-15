@@ -352,6 +352,59 @@
       }
     }
   }
+  .quote_detail_price {
+    border-radius: 13px;
+    box-shadow: 0px 0px 6px 2px rgb(223, 225, 226);
+    margin: 10px 0 20px 0;
+    width: fit-content;
+    padding: 10px 20px;
+    .price_viewer {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+
+      .info_cate {
+        font-size: 15px;
+        font-weight: 600;
+        width: 100px;
+      }
+      .info_cate2 {
+        color: #0d749a;
+        font-size: 20px;
+        margin-right: 10px;
+        font-weight: 600;
+        width: fit-content;
+      }
+      .price_viewer_data1 {
+        position: relative;
+        margin-right: 30px;
+        font-size: 23px;
+        font-weight: 600;
+        color: #f60a06;
+        .price_type {
+          position: absolute;
+          top: 0;
+          right: -25px;
+          font-size: 13px;
+          font-weight: 600;
+        }
+      }
+      .price_viewer_data {
+        position: relative;
+        margin-right: 30px;
+        font-size: 20px;
+        font-weight: 600;
+        color: rgb(15, 188, 41);
+        .price_type {
+          position: absolute;
+          top: 0;
+          right: -22px;
+          font-size: 11px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
   .quote_detail_item::-webkit-scrollbar {
     display: none;
   }
