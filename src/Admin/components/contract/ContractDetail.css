@@ -1,0 +1,68 @@
+.contract_admin {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.contract__footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button__save {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #17a52f;
+    /* Màu nền của nút */
+    color: #ffffff;
+    /* Màu chữ */
+}
+
+.button__save:hover {
+    background-color: #17a52f;
+    /* Màu nền của nút khi di chuột qua */
+}
+
+.button__save:active {
+    background-color: #17a52f;
+    /* Màu nền của nút khi được nhấn */
+    transform: translateY(1px);
+}
+
+.contract__close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-button {
+
+    background-color: transparent;
+    /* Màu nền trong suốt */
+    color: #000;
+    background-color: #f00;
+    /* Màu chữ */
+    font-size: 18px;
+    /* Kích thước chữ */
+    border: none;
+    /* Không có viền */
+    cursor: pointer;
+    /* Con trỏ chuột khi di chuột qua */
+}
+
+.close-button:hover {
+    color: #f00;
+    /* Màu chữ khi di chuột qua */
+}
+
+.confirm__contract {
+    display: flex;
+    justify-content: flex-end;
+}

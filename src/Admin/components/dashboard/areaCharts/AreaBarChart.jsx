@@ -12,64 +12,72 @@ import { ThemeContext } from "../../../context/ThemeContext";
 import { FaArrowUpLong } from "react-icons/fa6";
 import { LIGHT_THEME } from "../../../constants/themeConstants";
 import "./AreaCharts.scss";
+import { useSelector } from "react-redux";
 
-const data = [
-    {
-        month: "Jan",
 
-        profit: 100,
-    },
-    {
-        month: "Feb",
+// const data = [
+//     {
+//         month: "Jan",
 
-        profit: 85,
-    },
-    {
-        month: "Mar",
+//         profit: 100,
+//     },
+//     {
+//         month: "Feb",
 
-        profit: 90,
-    },
-    {
-        month: "April",
+//         profit: 85,
+//     },
+//     {
+//         month: "Mar",
 
-        profit: 70,
-    },
-    {
-        month: "May",
+//         profit: 90,
+//     },
+//     {
+//         month: "April",
 
-        profit: 80,
-    },
-    {
-        month: "Jun",
+//         profit: 70,
+//     },
+//     {
+//         month: "May",
 
-        profit: 50,
-    },
-    {
-        month: "Jul",
+//         profit: 80,
+//     },
+//     {
+//         month: "Jun",
 
-        profit: 75,
-    },
-    {
-        month: "Aug",
+//         profit: 50,
+//     },
+//     {
+//         month: "Jul",
 
-        profit: 86,
-    },
-    {
-        month: "Sep",
+//         profit: 75,
+//     },
+//     {
+//         month: "Aug",
 
-        profit: 78,
-    },
-];
+//         profit: 86,
+//     },
+//     {
+//         month: "Sep",
+
+//         profit: 78,
+//     },
+// ];
 
 const AreaBarChart = () => {
+
+    const data = useSelector((state) => state.getMonth.monthDetail);
+
+    const vietnameseData = convertDataToVietnamese(data);
+    console.log(vietnameseData)
+
     const { theme } = useContext(ThemeContext);
 
     const formatTooltipValue = (value) => {
-        return `${value}k`;
+        return `${value} vnđ`;
     };
 
     const formatYAxisLabel = (value) => {
-        return `${value}k`;
+        return `${value} vnđ`;
     };
 
     const formatLegendValue = (value) => {
@@ -79,13 +87,13 @@ const AreaBarChart = () => {
     return (
         <div className="bar-chart">
             <div className="bar-chart-info">
-                <h5 className="bar-chart-title">Total Revenue</h5>
+                <h5 className="bar-chart-title">Doanh thu theo tháng</h5>
                 <div className="chart-info-data">
-                    <div className="info-data-value">$50.4K</div>
-                    <div className="info-data-text">
+                    {/* <div className="info-data-value">$50.4K</div> */}
+                    {/* <div className="info-data-text">
                         <FaArrowUpLong />
                         <p>5% than last month.</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="bar-chart-wrapper">
@@ -93,7 +101,7 @@ const AreaBarChart = () => {
                     <BarChart
                         width={500}
                         height={200}
-                        data={data}
+                        data={vietnameseData}
                         margin={{
                             top: 5,
                             right: 5,
@@ -112,7 +120,7 @@ const AreaBarChart = () => {
                             }}
                         />
                         <YAxis
-                            padding={{ bottom: 10, top: 10 }}
+                            padding={{ bottom: 10, top: 10, }}
                             tickFormatter={formatYAxisLabel}
                             tickCount={6}
                             axisLine={false}
@@ -156,3 +164,26 @@ const AreaBarChart = () => {
 };
 
 export default AreaBarChart;
+
+
+const convertDataToVietnamese = (data) => {
+    return data?.map(item => ({
+        month: englishToVietnameseMonth[item.month],
+        profit: item.revernue
+    }));
+};
+
+const englishToVietnameseMonth = {
+    "Jan": "Tháng 1",
+    "Feb": "Tháng 2",
+    "Mar": "Tháng 3",
+    "Apr": "Tháng 4",
+    "May": "Tháng 5",
+    "Jun": "Tháng 6",
+    "Jul": "Tháng 7",
+    "Aug": "Tháng 8",
+    "Sep": "Tháng 9",
+    "Oct": "Tháng 10",
+    "Nov": "Tháng 11",
+    "Dec": "Tháng 12"
+};

@@ -15,6 +15,7 @@ import { staffListReducer, staffStatusReducer, userInfoReducer } from './Reducer
 import { confirmRequestReducer, productDeleteReducer, productListReducer } from './Reducers/ProductReducers';
 import { addCardReducer, deleteCardReducer, getCardDeatilReducer } from './Reducers/CardReducers';
 import { RequestListReducer } from './Reducers/RequestReducer';
+import { cardAdminReducer, getContractReducer, getMonthReducer } from './Reducers/AdminReducers';
 
 
 
@@ -37,6 +38,9 @@ const rootReducer = combineReducers({
     listRequest: RequestListReducer,
     listStaffStatus: staffStatusReducer,
     confirmRequest: confirmRequestReducer,
+    cardAdmin: cardAdminReducer,
+    getMonth: getMonthReducer,
+    getContract: getContractReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

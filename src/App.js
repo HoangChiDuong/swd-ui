@@ -21,6 +21,7 @@ import MainProducts from "./Staff/components/MainProduct";
 import CreateProduct from "./Staff/components/CreateProduct";
 import { useSelector } from "react-redux";
 import ViewTask from "./Staff/components/ViewTask";
+import Contract from "./Admin/components/contract/Contract";
 
 function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -56,12 +57,13 @@ function App() {
               <Route path="/staff/viewTask" element={<ViewTask />}></Route>
             </Route>
           )}
-          {(userAuth.Role === "AD") && (
-            <Route element={<BaseLayout />}>
-              <Route path="//admin/dashboard" element={<Dashboard />} />
-              <Route path="/customer" element={<Customer />} />
-            </Route>
-          )}
+          {/* {(userAuth.Role === "AD") && ( */}
+          <Route element={<BaseLayout />}>
+            <Route path="//admin/dashboard" element={<Dashboard />} />
+            <Route path="/customer" element={<Customer />} />
+            <Route path="/admin/contract" element={<Contract />} />
+          </Route>
+          {/* )} */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         {(userAuth.Role === "AD") && (
