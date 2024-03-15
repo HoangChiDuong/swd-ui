@@ -8,11 +8,13 @@ import { FaSignature } from "react-icons/fa";
 import numeral from "numeral";
 import "~/components/QuoteDetail/QuoteDetail.scss";
 import SignatureComponent from "../Signature";
+import LoadingFive from "../Loading";
 const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   const navigation = useNavigate();
   const [contractFileapi, setContractFileapi] = useState();
   const [gopay, setGopay] = useState(false);
   const [signedPdfUrl, setSignedPdfUrl] = useState(null);
+  const [showLoad, setShowLoad] = useState(false);
   const GoProduct = (product) => {
     navigation("/ProductDetail", { state: { productId: product } });
   };
@@ -24,8 +26,8 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   };
 
   const Pay_Vnpay = async () => {
+    setShowLoad(true);
     try {
-      console.log(contractFileapi);
       const formData = new FormData();
       formData.append("ContractId", quoteData.contracData.contractId);
       formData.append("Method", "VnPay");
@@ -36,12 +38,12 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
         "https://localhost:7058/api/Payment/Pay",
         formData
       );
-
-      // Nếu thành công, chuyển hướng đến URL thanh toán được trả về từ API
-      window.location.href = response.data.paymentUrl;
+      if (response !== null) {
+        setShowLoad(false);
+        window.location.href = response.data.paymentUrl;
+      }
     } catch (error) {
       console.error("Error while making payment:", error);
-      // Xử lý lỗi nếu cần
     }
   };
 
@@ -62,9 +64,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   const toggleFileWindow = () => {
     setSignedPdfUrl(quoteData.contracData.contracFile);
   };
-  const scroll = () => {};
   const [signature, setSignature] = useState(null);
-
   const addSignatureToPDF = async (signature) => {
     try {
       const existingPdfBytes = await fetch(
@@ -93,14 +93,8 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
       const pdfBytes = await pdfDoc.save();
       const pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
       const pdfUrl = URL.createObjectURL(pdfBlob);
-      // const byteArray = Array.from(new Uint8Array(pdfBytes));
-    const data =  await bufferToBase64(new Uint8Array(pdfBytes))
-      // const pdfBytess = new Uint8Array(pdfBytes);
-      // const decoder = new TextDecoder("utf8");
-      // const b64encoded = btoa(decoder.decode(pdfBytess));
-      console.log(data);
+      const data = await bufferToBase64(new Uint8Array(pdfBytes));
       setContractFileapi(data);
-
       setSignedPdfUrl(pdfUrl);
       setGopay(true);
     } catch (error) {
@@ -108,16 +102,14 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
     }
   };
   async function bufferToBase64(buffer) {
-    // use a FileReader to generate a base64 data URI:
-    const base64url = await new Promise(r => {
-      const reader = new FileReader()
-      reader.onload = () => r(reader.result)
-      reader.readAsDataURL(new Blob([buffer]))
+    const base64url = await new Promise((r) => {
+      const reader = new FileReader();
+      reader.onload = () => r(reader.result);
+      reader.readAsDataURL(new Blob([buffer]));
     });
-    // remove the `data:...;base64,` part from the start
-    return base64url.slice(base64url.indexOf(',') + 1);
+    return base64url.slice(base64url.indexOf(",") + 1);
   }
-  
+
   const priceProduct = parseInt(quoteData.contracData.priceProduct);
   const priceConstruc = parseInt(quoteData.contracData.priceConstruc);
   const totalPrice = priceProduct + priceConstruc;
@@ -125,6 +117,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   const pricePay = totalPrice * 0.3;
   return (
     <div className="confirmation-modal">
+      {showLoad === true && <LoadingFive />}
       <div className="quote_detail">
         <div className="close_quote_detail">
           <div className="quote_view_logo">
@@ -167,7 +160,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
               </div>
             </div>
             <div className="detail_meeting_update">
-              {quoteData.status == "Đang Xử Lí" && (
+              {quoteData.status === "Đang Xử Lí" && (
                 <button className="button_Submit">Chỉnh Sửa</button>
               )}
             </div>

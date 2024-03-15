@@ -19,8 +19,8 @@ import ViewQuotes from "./layouts/customer/ViewQuote";
 import Assignment from "./Staff/components/Assignment";
 import MainProducts from "./Staff/components/MainProduct";
 import CreateProduct from "./Staff/components/CreateProduct";
-import Task from "./Staff/components/Task";
 import { useSelector } from "react-redux";
+import ViewTask from "./Staff/components/ViewTask";
 
 function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -53,7 +53,7 @@ function App() {
               <Route path="/staff/assignment" element={<Assignment />}></Route>
               <Route path="/staff/product" element={<MainProducts />}></Route>
               <Route path="/staff/product/create" element={<CreateProduct />}></Route>
-              <Route path="/staff/task" element={<Task />}></Route>
+              <Route path="/staff/viewTask" element={<ViewTask />}></Route>
             </Route>
           )}
           {(userAuth.Role === "AD") && (

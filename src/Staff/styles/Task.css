@@ -1,0 +1,93 @@
+.task_view {
+  width: 100%;
+  box-shadow: 0px 0px 6px 2px rgb(202, 210, 214);
+  margin-top: 35px;
+  border-radius: 23px;
+  height: fit-content;
+}
+.task_index {
+  display: flex;
+  font-size: 15px;
+  border-bottom: 1px solid #000;
+  padding: 5px 10px;
+}
+.task_stt {
+  padding: 10px 0;
+  border-right: 1px solid #000;
+  width: 10%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.task_date {
+  padding: 10px 0;
+  border-right: 1px solid #000;
+  width: 10%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.task_nameUser {
+  padding: 10px 0;
+  border-right: 1px solid #000;
+  width: 11%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.task_email {
+  padding: 10px 0;
+  border-right: 1px solid #000;
+  width: 12%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.task_phone {
+  padding: 10px 0;
+  border-right: 1px solid #000;
+  width: 13%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.task_address {
+  padding: 10px 0;
+  border-right: 1px solid #000;
+  width: 28%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.task_action {
+  width: 16%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.ac_tionClick {
+  border: 2px solid #24dd43;
+  background-color: #fff;
+  color: #1ac035;
+  font-weight: 600;
+  transition: 0.3s ease-in;
+  padding: 5px 10px;
+  border-radius: 13px;
+}
+.ac_tionClick1 {
+  border: 2px solid #0387af;
+  background-color: #fff;
+  color: #0387af;
+  font-weight: 600;
+  transition: 0.3s ease-in;
+  padding: 5px 10px;
+  border-radius: 13px;
+}
+.ac_tionClick1:hover {
+  transform: scale(1.08);
+  background-color: #1476af81;
+}
+.task_item {
+  padding: 15px 0;
+}

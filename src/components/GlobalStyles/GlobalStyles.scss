@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 4000;
+  z-index: 3000;
 }
 .popup-modal {
   font-family:Arial, Helvetica, sans-serif;
@@ -60,5 +60,14 @@
   cursor: pointer;
   &:hover {
     scale: 1.05;
+  }
+  .text_max{
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
 }

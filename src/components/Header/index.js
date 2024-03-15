@@ -41,15 +41,17 @@ function Header({ indexCart }) {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    axios
-      .get(`https://localhost:7058/api/User/UserInfo?userId=${userAuth.Id}`)
-      .then((response) => {
-
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
+    if (userAuth.id !== null) {
+      axios
+        .get(`https://localhost:7058/api/User/UserInfo?userId=${userAuth?.Id}`)
+        .then((response) => {
+          console.log(response.data);
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+        });
+    }
   }, [userAuth.Id]);
 
   const cardDetail = useSelector((state) => state.getCardDetail) || {};
@@ -163,6 +165,7 @@ function Header({ indexCart }) {
   const goViewQuote = () => {
     navigate("/ProgressRequest");
   };
+
   return (
     <div className="header">
       {showLogin && <Login setShowLogin={setShowLogin} />}
@@ -326,10 +329,10 @@ function Header({ indexCart }) {
                           {filterName(user?.userName)}
                         </div>
                       )}
-                      {!user && (
+                      {user?.images !== null && (
                         <img
                           className="img_user_data"
-                          src={""}
+                          src={user?.images}
                           alt={user?.userName}
                         />
                       )}
@@ -339,19 +342,19 @@ function Header({ indexCart }) {
                   <div className="profile_staus">Tài khoản của bạn</div>
                   <div className="item_profile">
                     <div className="item_profile_user">
-                      <div className="profile_user">Vai trò:</div>
+                      <div className="profile_user_tl">Vai trò:</div>
                       <div className="profile_user">{user?.position}</div>
                     </div>
                     <div className="item_profile_user">
-                      <div className="profile_user">Email:</div>
-                      <div className="profile_user">{user?.email}</div>
+                      <div className="profile_user_tl">Email:</div>
+                      <div className="profile_user_email">{user?.email}</div>
                     </div>
                     <div className="item_profile_user">
-                      <div className="profile_user">Số điện thoại:</div>
+                      <div className="profile_user_tl">Số điện thoại:</div>
                       <div className="profile_user">{user?.phone}</div>
                     </div>
                     <div className="item_profile_user">
-                      <div className="profile_user">Ngày sinh:</div>
+                      <div className="profile_user_tl">Ngày sinh:</div>
                       <div className="profile_user">{user?.date}</div>
                     </div>
                   </div>

@@ -1,0 +1,154 @@
+.create_con {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  width: auto;
+  height: auto;
+  width: fit-content;
+  padding: 15px 30px;
+  border-radius: 33px;
+  .create_con_status {
+    font-weight: 600;
+    padding: 10px 0;
+  }
+  .create_con_item {
+    width: 60vw;
+    box-shadow: 0px 0px 6px 2px rgb(202, 210, 214);
+    max-height: 80vh;
+    overflow-y: scroll;
+    padding: 10px 20px;
+    border-radius: 13px;
+    .create_con_Price {
+      width: fit-content;
+      .create_con_iprice {
+        display: flex;
+        margin: 15px 5px;
+        .create_con_priceTx {
+          width: 120px;
+          font-size: 17px;
+          font-weight: 600;
+          color: #032138;
+          height: auto;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          text-align: center;
+        }
+        .create_con_PriceIn {
+          width: 250px;
+          text-align: left;
+          align-items: center;
+          border-radius: 18px;
+          background-color: rgb(255, 255, 255);
+          padding: 15px 17px;
+          font-size: 14px;
+          box-shadow: rgba(9, 11, 12, 0.45) 0px 0px 4px 1px;
+          border: none;
+        }
+      }
+    }
+
+    .create_con_Con {
+      display: flex;
+      justify-content: left;
+      padding: 10px 5px;
+      .create_con_btn {
+        background-color: #fff;
+        cursor: pointer;
+        padding: 5px 15px;
+        border-radius: 13px;
+        font-weight: 600;
+        border: 3px solid #032138;
+        color: #032138;
+        transition: 0.3s ease-in;
+        &:hover {
+          scale: 1.03;
+        }
+      }
+      .create_con_btn2 {
+        background-color: #fff;
+        cursor: pointer;
+        padding: 5px 15px;
+        border-radius: 13px;
+        font-weight: 600;
+        border: 3px solid #2acf0a;
+        color: #2acf0a;
+        transition: 0.3s ease-in;
+        &:hover {
+          scale: 1.03;
+        }
+      }
+      .create_con_btn3 {
+        background-color: #fff;
+        cursor: pointer;
+        padding: 5px 15px;
+        border-radius: 13px;
+        font-weight: 600;
+        border: 3px solid #f30b0b;
+        color: #f30b0b;
+        transition: 0.3s ease-in;
+        &:hover {
+          scale: 1.03;
+        }
+      }
+    }
+  }
+  .create_con_Submit {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    padding: 20px 5px 10px 0;
+    .btn_Push {
+      background-color: #36e9096e;
+      border: 3px solid #2ea011;
+      font-weight: 700;
+      color: #2ea011;
+      padding: 10px 25px;
+      border-radius: 13px;
+      font-size: 18px;
+      margin-right: 10px;
+      cursor: pointer;
+      &:hover {
+        scale: 1.05;
+      }
+    }
+  }
+  .create_con_item::-webkit-scrollbar {
+    display: none;
+  }
+  .create_con_item {
+    scrollbar-width: none;
+  }
+  .close_contract {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  .quote_view_close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .close_click {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 34px;
+      font-weight: 600;
+    }
+    &:hover {
+      cursor: pointer;
+      background: #b8c2ce;
+    }
+  }
+  .create_con_PriceIn::-webkit-inner-spin-button,
+  .create_con_PriceIn::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
