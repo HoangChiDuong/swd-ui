@@ -26,6 +26,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   };
 
   const Pay_Vnpay = async () => {
+
     setShowLoad(true);
     try {
       const formData = new FormData();
@@ -65,8 +66,6 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
     setSignedPdfUrl(quoteData.contracData.contracFile);
   };
   const [signature, setSignature] = useState(null);
-
-
   const addSignatureToPDF = async (signature) => {
 
     try {
@@ -81,7 +80,6 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
         atob(signature.split("base64,")[1]),
         (c) => c.charCodeAt(0)
       );
-      console.log(signatureImageBytes);
       // Tải ảnh chữ ký vào PDF
       const signatureImage = await pdfDoc.embedPng(signatureImageBytes);
 
@@ -98,6 +96,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
       const pdfUrl = URL.createObjectURL(pdfBlob);
       const data = await bufferToBase64(new Uint8Array(pdfBytes));
       setContractFileapi(data);
+      console.log(data);
       setSignedPdfUrl(pdfUrl);
       setGopay(true);
     } catch (error) {
