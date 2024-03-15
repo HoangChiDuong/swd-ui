@@ -9,21 +9,23 @@ const AllRequest = () => {
   const navigate = useNavigate();
   const [showDetailQuote, setShowDetailQuote] = useState(false);
   const [quoteDetailData, setQuoteDetailData] = useState({});
-  const [quoteData, setQuoteData]=useState();
+  const [quoteData, setQuoteData] = useState();
   const data = {
     id: userAuth.Id,
     status: "0",
   };
   useEffect(() => {
-    axios.post("https://localhost:7058/api/Request/GetRequestStatus",data)
-    .then((response) => {
-     setQuoteData(response.data)
-    });
+    if (userAuth.Id !== "") {
+      axios
+        .post("https://localhost:7058/api/Request/GetRequestStatus", data)
+        .then((response) => {
+          setQuoteData(response.data);
+        });
+    }
   }, [userAuth.Id]);
- 
+
   const GoProduct = (product) => {
-     
-     navigate("/ProductDetail", { state: { productId : product} });
+    navigate("/ProductDetail", { state: { productId: product } });
   };
 
   const ShowDetailQuote = (quotes) => {
