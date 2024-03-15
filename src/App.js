@@ -19,15 +19,17 @@ import ViewQuotes from "./layouts/customer/ViewQuote";
 import Assignment from "./Staff/components/Assignment";
 import MainProducts from "./Staff/components/MainProduct";
 import CreateProduct from "./Staff/components/CreateProduct";
+import { useSelector } from "react-redux";
+import ViewTask from "./Staff/components/ViewTask";
+import Contract from "./Admin/components/contract/Contract";
 import ManageHR from "./Admin/components/ManageHR/ManageHR";
 import ManageStaff from "./Admin/components/ManageStaff/ManageStaff";
 
 
 function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  console.log(theme)
+  const userAuth = useSelector((state) => state.auth.login.currentUser);
 
-  // adding dark-mode class if the dark mode is set on to the body tag
   useEffect(() => {
     if (theme === DARK_THEME) {
       document.body.classList.add("dark-mode");
@@ -35,26 +37,30 @@ function App() {
       document.body.classList.remove("dark-mode");
     }
   }, [theme]);
+
+
   return (
     <div>
       <Router>
         <Routes>
-
           <Route>
-
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/ProductDetail" element={<ViewProduct />} />
             <Route path="/ProductByCate" element={<ViewProductCate />} />
-            <Route path="/ProgressRequest" element={<ViewQuotes />} />
+            <Route path="/ProgressRequest/" element={<Navigate to="/ProgressRequest/NewRequest" />} />
+            <Route path="/ProgressRequest/*" element={<ViewQuotes />} />
           </Route>
-          <Route element={<AppStaff />}>
-            <Route path="/staff/dashboard" element={<DashboardStaff />}></Route>
-            <Route path="/staff/assignment" element={<Assignment />}></Route>
-            <Route path="/staff/product" element={<MainProducts />}></Route>
-            <Route path="/staff/product/create" element={<CreateProduct />}></Route>
-
-          </Route>
+          {(userAuth.Role === "ST") && (
+            <Route element={<AppStaff />}>
+              <Route path="/staff/dashboard" element={<DashboardStaff />}></Route>
+              <Route path="/staff/assignment" element={<Assignment />}></Route>
+              <Route path="/staff/product" element={<MainProducts />}></Route>
+              <Route path="/staff/product/create" element={<CreateProduct />}></Route>
+              <Route path="/staff/viewTask" element={<ViewTask />}></Route>
+            </Route>
+          )}
+          {/* {(userAuth.Role === "AD") && ( */}
           <Route element={<BaseLayout />}>
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/ManageHR" element={<ManageHR/>} />
@@ -62,21 +68,24 @@ function App() {
 
 
             <Route path="/customer" element={<Customer />} />
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="/admin/contract" element={<Contract />} />
           </Route>
-
+          {/* )} */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
+        {(userAuth.Role === "AD") && (
+          <button
+            type="button"
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+          >
+            <img
+              className="theme-icon"
+              src={theme === LIGHT_THEME ? SunIcon : MoonIcon}
+            />
+          </button>
+        )}
 
-        <button
-          type="button"
-          className="theme-toggle-btn"
-          onClick={toggleTheme}
-        >
-          <img
-            className="theme-icon"
-            src={theme === LIGHT_THEME ? SunIcon : MoonIcon}
-          />
-        </button>
       </Router>
 
     </div>

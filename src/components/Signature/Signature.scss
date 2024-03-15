@@ -1,0 +1,35 @@
+.signature_pad_container {
+  width: fit-content;
+  height: fit-content;
+  .signature_detail_proText {
+     margin-bottom: 10px;
+     font-weight: 600;
+  }
+  .signature_canvas {
+    border-radius: 13px;
+    box-shadow: 0px 0px 6px 2px rgb(77, 83, 85);
+    width: 300px;
+    height: 150px;
+    font-size: 12px;
+  }
+  .btn_sign_paint {
+    margin-top: 5px;
+    display: flex;
+    justify-content: end;
+    .btn_signature_ag {
+      padding: 5px 10px;
+      background-color: #fff;
+      color: #e82929;
+      font-weight: 600;
+      border: 2px solid #e82929;
+      margin-right: 15px;
+    }
+    .btn_signature {
+     padding: 5px 10px;
+     background-color: #fff;
+     color: rgb(40, 218, 76);
+     font-weight: 600;
+     border: 2px solid rgb(40, 218, 76);
+   }
+  }
+}

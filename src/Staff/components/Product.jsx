@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import numeral from "numeral";
@@ -14,6 +14,8 @@ const Product = (props) => {
 
     const [showConfirmation, setShowConfirmation] = useState(false);
     const dispatch = useDispatch();
+
+
 
     const deletehandler = (productId) => {
         dispatch(deleteProduct(productId))

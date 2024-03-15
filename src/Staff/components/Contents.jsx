@@ -1,16 +1,29 @@
 import React from "react";
 import ContentHeader from "./ContentHeader";
-import '../styles/Content.css';
+import "../styles/Content.css";
 import Card from "./Card";
 import StaffList from "./StaffList";
+import { useSelector } from "react-redux";
 const Content = () => {
-    return (
-        <div className="content">
-            <ContentHeader />
-            <Card />
-            <StaffList />
-        </div>
-    )
-}
+  const staff = useSelector((state) => state.auth.login.currentUser);
+
+  return (
+    <div className="content">
+      <ContentHeader />
+      {staff.ManageId === "" && (
+        <>
+          <Card />
+          <StaffList />
+        </>
+      )}
+      {staff.ManageId !== "" && (
+        <>
+        
+          
+        </>
+      )}
+    </div>
+  );
+};
 
 export default Content;

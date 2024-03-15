@@ -9,7 +9,7 @@ import Footer from "~/components/Footer";
 const HomePage = () => {
   const [Idcategory, setIdcategory] = useState(1);
   const [Products, setProducts] = useState();
-  const [selectedCategory, setSelectedCategory]  = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(0);
   const imageCate = [
     {
       src: "./Cchungcu.png",
@@ -39,23 +39,28 @@ const HomePage = () => {
   ];
   useEffect(() => {
     axios
-    .get(`https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${Idcategory}`)
-    .then((response) => {
-      console.log(response.data);
-      const firstSixProducts = response.data.slice(0, 6); 
-      setProducts(firstSixProducts);
-    })
-    .catch((error) => {
-      console.error("There was an error!", error);
-    });
+      .get(
+        `https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${Idcategory}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        const firstSixProducts = response.data.slice(0, 6);
+        setProducts(firstSixProducts);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
   }, [Idcategory]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
   const handleProductClick = (productId) => {
     navigate("/ProductDetail", { state: { productId } });
   };
-  const handleCate = (Id,index) => {
+  const handleCate = (Id, index) => {
     setIdcategory(Id);
-    setSelectedCategory(index)
+    setSelectedCategory(index);
   };
   return (
     <>
@@ -74,17 +79,15 @@ const HomePage = () => {
             </div>
             <div className="home_cate_icon">
               {imageCate.map((item, index) => (
-                <div key={index} className={`cate_icon_index ${
-                  index === selectedCategory ? "selected" : ""
-                }`} onClick={() =>
-                  handleCate(item.id,index)
-                }>
+                <div
+                  key={index}
+                  className={`cate_icon_index ${
+                    index === selectedCategory ? "selected" : ""
+                  }`}
+                  onClick={() => handleCate(item.id, index)}
+                >
                   <img src={item.src} alt="cateimgae" />
-                  <div
-                    className="cate_icon_text"                   
-                  >
-                    {item.Text}
-                  </div>
+                  <div className="cate_icon_text">{item.Text}</div>
                 </div>
               ))}
             </div>
@@ -107,7 +110,7 @@ const HomePage = () => {
                 của chúng tôi!
               </div>
               <div className="intro_2">
-                Lý do làm nội thất trọn gói nên chọn Mạnh Hệ
+                Lý do làm nội thất trọn gói nên chọn GOAT INTERIOR
               </div>
               <div className="intro_3">
                 <li>Đội KTS chuyên nghiệp - bản vẽ đạt chuẩn</li>
@@ -120,7 +123,7 @@ const HomePage = () => {
             <img src="./GOATINTERIOR.PNG" alt="image" className="image_intro" />
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

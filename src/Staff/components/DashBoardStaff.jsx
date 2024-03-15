@@ -4,8 +4,12 @@ import '../styles/AppStaff.css';
 import { useDispatch, useSelector } from "react-redux";
 import { listStaff } from "~/redux/Actions/UserActions";
 import { listProducts } from "~/redux/Actions/ProductActions";
+import ViewTask from "./ViewTask";
+
 
 const DashboardStaff = () => {
+    const staff = useSelector((state) => state.auth.login.currentUser);
+
     const userAuth = useSelector((state) => state.auth.login.currentUser);
 
     const dispatch = useDispatch();
@@ -16,8 +20,21 @@ const DashboardStaff = () => {
     }, [dispatch]);
     return (
         <div className="dashboard--content">
-            <Content />
-            <Profile />
+
+            {staff.ManageId === "" && (
+                <>
+                    <Content />
+                    <Profile />
+                </>
+            )}
+            {staff.ManageId !== "" && (
+                <>
+                    <ViewTask />
+
+                </>
+            )}
+
+
         </div>
     )
 }

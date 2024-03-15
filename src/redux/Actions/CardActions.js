@@ -14,6 +14,7 @@ import {
 export const addCart = (userid) => async (dispatch) => {
   try {
     dispatch({ type: ADD_CARD_REQUEST });
+
     await axios.get(`https://localhost:7058/api/Cart/LoadAdd`);
 
     dispatch({ type: ADD_CARD_SUCCESS });
@@ -47,13 +48,14 @@ export const getCard = (userid) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(
-      `https://localhost:7058/api/Cart/GetCartDetails?userId=${userid}`,
-      config
-    );
-    console.log(data);
-
-    dispatch({ type: GET_CARD_DETAIL_SUCCESS, payload: data });
+    if (userid !== null) {
+      const {data} = await axios.get(
+        `https://localhost:7058/api/Cart/GetCartDetails?userId=${userid}`,
+        config
+      );
+      console.log(data);
+      dispatch({ type: GET_CARD_DETAIL_SUCCESS, payload: data });
+    }
   } catch (error) {
     const message =
       error.response && error.response.data.message

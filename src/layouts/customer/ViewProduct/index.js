@@ -12,6 +12,7 @@ import Footer from "~/components/Footer";
 import CreateQuote from "~/components/CreateQuote";
 import Loading from "~/Loading/Loading";
 import PopupConfirm from "~/components/PopupConfirm";
+import LoadingFive from "~/components/Loading";
 
 const ViewProduct = () => {
   const userAuth = useSelector((state) => state.auth.login.currentUser);
@@ -21,13 +22,13 @@ const ViewProduct = () => {
   const Idproduct = location.state.productId;
   const [load, setLoad] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
+  const [showLoad, setShowLoad] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAddNewAddress, setShowAddNewAddress] = useState(false);
   const [firstImage, setFirstImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState(false);
   useEffect(() => {
-    console.log(accessToken);
     axios
       .get(
         `https://localhost:7058/api/Poduct/GetProduct?Idproduct=${Idproduct}`
@@ -41,25 +42,32 @@ const ViewProduct = () => {
         console.error("There was an error!", error);
       });
   }, [Idproduct]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [productDetails, setProductDetails] = useState();
   const ClickChildImg = (img, index) => {
     setFirstImage(img);
     setSelectedImage(index);
   };
   const handleAddNewAddress = () => {
-    setShowAddNewAddress(true);
-  }; 
-  const config = {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
-const disres = true;
-  const addToCart = () => {
-    if (userAuth.Id == "") {
+    if (userAuth.Id === "") {
       setShowLogin(true);
     } else {
-     
+      setShowAddNewAddress(true);
+    }
+  };
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  const addToCart = () => {
+    if (userAuth.Id === "") {
+      setShowLogin(true);
+    } else {
+      setShowLoad(true);
       axios
         .post(
           `https://localhost:7058/api/Cart/AddToCart?userId=${userAuth.Id}&productId=${Idproduct}`,
@@ -67,9 +75,9 @@ const disres = true;
         )
         .then((response) => {
           if (response.data !== "") {
-            
+            setShowLoad(false);
             dispatch(addCart(userAuth.Id));
-            setContent(response.data)
+            setContent(response.data);
             setIsLoading(true);
           }
         });
@@ -78,6 +86,7 @@ const disres = true;
 
   return (
     <div>
+      {showLoad === true && <LoadingFive />}
       {showLogin && <Login setShowLogin={setShowLogin} />}
       {isLoading && (
         <PopupConfirm setIsLoading={setIsLoading} content={content} />
