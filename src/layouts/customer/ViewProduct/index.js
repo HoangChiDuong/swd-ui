@@ -41,18 +41,21 @@ const ViewProduct = () => {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-
   }, [Idproduct]);
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
+  }, []);
   const [productDetails, setProductDetails] = useState();
   const ClickChildImg = (img, index) => {
     setFirstImage(img);
     setSelectedImage(index);
   };
   const handleAddNewAddress = () => {
-    setShowAddNewAddress(true);
+    if (userAuth.Id === "") {
+      setShowLogin(true);
+    } else {
+      setShowAddNewAddress(true);
+    }
   };
   const config = {
     headers: {
@@ -64,7 +67,7 @@ const ViewProduct = () => {
     if (userAuth.Id === "") {
       setShowLogin(true);
     } else {
-      setShowLoad(true)
+      setShowLoad(true);
       axios
         .post(
           `https://localhost:7058/api/Cart/AddToCart?userId=${userAuth.Id}&productId=${Idproduct}`,
@@ -74,9 +77,8 @@ const ViewProduct = () => {
           if (response.data !== "") {
             setShowLoad(false);
             dispatch(addCart(userAuth.Id));
-            setContent(response.data)
+            setContent(response.data);
             setIsLoading(true);
-
           }
         });
     }
@@ -99,8 +101,9 @@ const ViewProduct = () => {
                 {productDetails?.images.map((image, index) => (
                   <div
                     key={index}
-                    className={`child_image ${index === selectedImage ? "selected" : ""
-                      }`}
+                    className={`child_image ${
+                      index === selectedImage ? "selected" : ""
+                    }`}
                   >
                     <img
                       src={image.imagePath}
