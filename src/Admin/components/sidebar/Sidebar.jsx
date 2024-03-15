@@ -87,7 +87,7 @@ const Sidebar = () => {
                 <span className="menu-link-icon">
                   <MdOutlineBarChart size={20} />
                 </span>
-                <span className="menu-link-text">asdasd</span>
+                <span className="menu-link-text">Statistics</span>
               </Link>
             </li>
             <li className="menu-item">
@@ -108,7 +108,7 @@ const Sidebar = () => {
             </li>
             <li className="menu-item">
               <Link
-                to="/admin/ManageHR"
+                to="/admin/ManageStaff"
                 className={`menu-link ${
                   activeLink === "/staff" ? "active" : ""
                 }`}
@@ -117,12 +117,12 @@ const Sidebar = () => {
                 <span className="menu-link-icon">
                   <MdOutlineShoppingBag size={20} />
                 </span>
-                <span className="menu-link-text">Danh Sách Quản lý</span>
+                <span className="menu-link-text">Quản lý nhân viên</span>
               </Link>
             </li>
             <li className="menu-item">
               <Link
-                to="/admin/ManageStaff"
+                to="/customer"
                 className={`menu-link ${
                   activeLink === "/customer" ? "active" : ""
                 }`}
@@ -131,7 +131,7 @@ const Sidebar = () => {
                 <span className="menu-link-icon">
                   <MdOutlinePeople size={20} />
                 </span>
-                <span className="menu-link-text">Danh Sách Nhân Viên</span>
+                <span className="menu-link-text">Customer</span>
               </Link>
             </li>
             <li className="menu-item">
