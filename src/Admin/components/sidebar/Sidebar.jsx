@@ -88,31 +88,27 @@ const Sidebar = () => {
                 <span className="menu-link-icon">
                   <MdOutlineGridView size={18} />
                 </span>
-                <span className="menu-link-text">Dashboard</span>
+                <span className="menu-link-text">Thống Kê</span>
               </Link>
             </li>
             <li className="menu-item">
-              <Link to="/" className="menu-link">
+              <Link to="/admin/contract" className="menu-link">
                 <span className="menu-link-icon">
                   <MdOutlineBarChart size={20} />
                 </span>
-                <span className="menu-link-text">Statistics</span>
+                <span className="menu-link-text">Hợp đồng</span>
               </Link>
             </li>
             <li className="menu-item">
-              <Link to="/" className="menu-link">
+              <Link
+                to="/admin/ManageHR"
+                className={`menu-link ${activeLink === "/HR" ? "active" : ""}`}
+                onClick={() => handleLinkClick("/HR")}
+              >
                 <span className="menu-link-icon">
-                  <MdOutlineAttachMoney size={20} />
+                  <MdOutlineShoppingBag size={20} />
                 </span>
-                <span className="menu-link-text">Payment</span>
-              </Link>
-            </li>
-            <li className="menu-item">
-              <Link to="/" className="menu-link">
-                <span className="menu-link-icon">
-                  <MdOutlineCurrencyExchange size={18} />
-                </span>
-                <span className="menu-link-text">Transactions</span>
+                <span className="menu-link-text">Danh Sách Quản Lý</span>
               </Link>
             </li>
             <li className="menu-item">
@@ -129,7 +125,8 @@ const Sidebar = () => {
                 <span className="menu-link-text">Quản lý nhân viên</span>
               </Link>
             </li>
-            <li className="menu-item">
+
+            {/* <li className="menu-item">
               <Link
                 to="/customer"
                 className={`menu-link ${
@@ -150,7 +147,7 @@ const Sidebar = () => {
                 </span>
                 <span className="menu-link-text">Messages</span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 

@@ -292,7 +292,9 @@ const ListStaff = () => {
             </div>
 
             <div style={{ marginTop: "50px" }}>
-              <button type="submit">Gửi</button>
+              <button Click={handleFormSubmit} type="submit">
+                Gửi
+              </button>
               <button onClick={handleCloseFormAddStaff}>Đóng</button>
             </div>
           </div>
