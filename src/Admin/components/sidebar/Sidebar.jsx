@@ -15,9 +15,11 @@ import {
   MdOutlineSettings,
   MdOutlineShoppingBag,
 } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Sidebar.scss";
 import { SidebarContext } from "../../context/SidebarContext";
+import { useDispatch } from "react-redux";
+import { logOut } from "~/redux/apiRequest";
 
 const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
@@ -25,6 +27,13 @@ const Sidebar = () => {
   const [activeLink, setActiveLink] = useState("/admin");
 
   const navbarRef = useRef(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut(dispatch, navigate);
+  };
 
   const handleClickOutside = (event) => {
     console.log("Event target:", event.target);
@@ -156,7 +165,7 @@ const Sidebar = () => {
                             </Link>
                         </li> */}
             <li className="menu-item">
-              <Link to="/logout" className="menu-link">
+              <Link onClick={handleLogOut} className="menu-link">
                 <span className="menu-link-icon">
                   <MdOutlineLogout size={20} />
                 </span>

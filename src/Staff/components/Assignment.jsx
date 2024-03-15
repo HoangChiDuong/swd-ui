@@ -102,19 +102,24 @@ const Assignment = () => {
         },
         {
             name: "Sắp xếp",
-            cell: row => (
-                <select
-                    value={row.assignedStaffId}
-                    onChange={(e) => handleFilter(e, row)}
-                >
-                    <option value="" className="staff--list">Xếp</option>
-                    {staffs?.map(option => (
-                        <option key={option.userId} value={option.userId} className="staff--list">{option.userName}</option>
-                    ))}
-                </select>
-            ),
+            cell: row => {
+                if (row.status === "1") {
+                    return (
+                        <select
+                            value={row.assignedStaffId}
+                            onChange={(e) => handleFilter(e, row)}
+                        >
+                            <option value="" className="staff--list">Xếp</option>
+                            {staffs?.map(option => (
+                                <option key={option.userId} value={option.userId} className="staff--list">{option.userName}</option>
+                            ))}
+                        </select>
+                    )
+                }
+            }
         },
         {
+            name: "Trạng Thái",
             cell: (row) => {
                 if (row.status === "1") {
                     return (
@@ -130,15 +135,15 @@ const Assignment = () => {
                     );
                 } else if (row.status === "3") {
                     return (
-                        <div className="assign__await" >
-                            <div ><FaFileContract className="assign--icon" /></div>
+                        <div className="" >
+                            <div ><FaFileContract style={{ fontSize: "35px", background: "blue", borderRadius: "50%", color: "#fff", padding: "5px" }} /></div>
                         </div>
                     );
                 }
                 else if (row.status === "4") {
                     return (
-                        <div className="assign__await" >
-                            <div ><LuCircleDollarSign className="assign--icon" /></div>
+                        <div  >
+                            <div ><LuCircleDollarSign style={{ fontSize: "35px", background: "green", borderRadius: "50%", color: "#fff" }} /></div>
                         </div>
                     );
                 }

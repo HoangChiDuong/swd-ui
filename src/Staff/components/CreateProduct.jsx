@@ -42,6 +42,8 @@ const CreateProduct = () => {
 
   var count = 0;
 
+
+
   // const dispatch = useDispatch();
 
   // const productCreate = useSelector((state) => state.productCreate);
@@ -104,6 +106,11 @@ const CreateProduct = () => {
     setCateId("");
     setQuantity("");
     setImageFile([]);
+    setImageData([]);
+    setDataOption([]);
+    setNameOption(null);
+    setQuantityOption(null);
+    setInputOptionShow(false);
     setFormErrors({});
   };
   const DataProduct = {
@@ -196,6 +203,7 @@ const CreateProduct = () => {
       .post("https://localhost:7058/AddProduct", DataProduct)
       .then((response) => {
         console.log(response.data);
+        resetForm();
       })
       .catch((error) => {
         // Xử lý lỗi nếu có
