@@ -62,7 +62,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
   const toggleFileWindow = () => {
     setSignedPdfUrl(quoteData.contracData.contracFile);
   };
-  const scroll = () => {};
+  const scroll = () => { };
   const [signature, setSignature] = useState(null);
 
   const addSignatureToPDF = async (signature) => {
@@ -94,7 +94,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
       const pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
       const pdfUrl = URL.createObjectURL(pdfBlob);
       // const byteArray = Array.from(new Uint8Array(pdfBytes));
-    const data =  await bufferToBase64(new Uint8Array(pdfBytes))
+      const data = await bufferToBase64(new Uint8Array(pdfBytes))
       // const pdfBytess = new Uint8Array(pdfBytes);
       // const decoder = new TextDecoder("utf8");
       // const b64encoded = btoa(decoder.decode(pdfBytess));
@@ -117,7 +117,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
     // remove the `data:...;base64,` part from the start
     return base64url.slice(base64url.indexOf(',') + 1);
   }
-  
+
   const priceProduct = parseInt(quoteData.contracData.priceProduct);
   const priceConstruc = parseInt(quoteData.contracData.priceConstruc);
   const totalPrice = priceProduct + priceConstruc;
@@ -245,82 +245,82 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
           </div>
           {(quoteData.contracData.status === "2" ||
             quoteData.contracData.status === "3") && (
-            <div className="quote_detail_4">
-              <div className="quote_detail_proText">Kết Quả Báo Giá</div>
-              <div className="quote_detail_price">
-                <div className="price_viewer">
-                  <div className="info_cate"> Giá vật tư:</div>
-                  <div className="price_viewer_data">
-                    {numeral(quoteData.contracData.priceProduct).format("0,0")}
-                    <div className="price_type">vnđ</div>
+              <div className="quote_detail_4">
+                <div className="quote_detail_proText">Kết Quả Báo Giá</div>
+                <div className="quote_detail_price">
+                  <div className="price_viewer">
+                    <div className="info_cate"> Giá vật tư:</div>
+                    <div className="price_viewer_data">
+                      {numeral(quoteData.contracData.priceProduct).format("0,0")}
+                      <div className="price_type">vnđ</div>
+                    </div>
+                  </div>
+                  <div className="price_viewer">
+                    <div className="info_cate"> Giá thi công:</div>
+                    <div className="price_viewer_data">
+                      {numeral(quoteData.contracData.priceConstruc).format("0,0")}
+                      <div className="price_type">vnđ</div>
+                    </div>
                   </div>
                 </div>
-                <div className="price_viewer">
-                  <div className="info_cate"> Giá thi công:</div>
-                  <div className="price_viewer_data">
-                    {numeral(quoteData.contracData.priceConstruc).format("0,0")}
-                    <div className="price_type">vnđ</div>
+
+                {quoteData.contracData.status === "2" && (
+                  <div>
+                    <div className="quote_detail_price">
+                      <div className="price_viewer">
+                        <div className="info_cate2">
+                          Thanh toán trước 30% khi ký hợp đồng:
+                        </div>
+                        <div className="price_viewer_data1">
+                          {numeral(pricePay).format("0,0")}
+                          <div className="price_type">vnđ</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="quote_detail_contract">
+                      <SignatureComponent
+                        setSignature={setSignature}
+                        setSignedPdfUrl={setSignedPdfUrl}
+                        setGopay={setGopay}
+                      />
+                      <div className="quote_detail_"></div>
+                      <div className="quote_detail_btn">
+                        {signature !== null && (
+                          <button
+                            className="button_file"
+                            onClick={() => {
+                              addSignatureToPDF(signature);
+                            }}
+                          >
+                            <FaSignature className="button_view_file" /> Ký Hợp
+                            Đồng
+                          </button>
+                        )}
+                        {signature === null && (
+                          <button
+                            className="button_file_view"
+                            onClick={toggleFileWindow}
+                          >
+                            <FaFilePdf className="button_view_file" /> Xem Hợp
+                            Đồng
+                          </button>
+                        )}
+
+                        {gopay && (
+                          <button className="button_PayMent" onClick={Pay_Vnpay}>
+                            <img
+                              className="button_PayMent_img"
+                              src={"../../IconVNPAY.png"}
+                            />
+                            Đặt Cọc
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
-
-              {quoteData.contracData.status === "2" && (
-                <div>
-                  <div className="quote_detail_price">
-                    <div className="price_viewer">
-                      <div className="info_cate2">
-                        Thanh toán trước 30% khi ký hợp đồng:
-                      </div>
-                      <div className="price_viewer_data1">
-                        {numeral(pricePay).format("0,0")}
-                        <div className="price_type">vnđ</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="quote_detail_contract">
-                    <SignatureComponent
-                      setSignature={setSignature}
-                      setSignedPdfUrl={setSignedPdfUrl}
-                      setGopay={setGopay}
-                    />
-                    <div className="quote_detail_"></div>
-                    <div className="quote_detail_btn">
-                      {signature !== null && (
-                        <button
-                          className="button_file"
-                          onClick={() => {
-                            addSignatureToPDF(signature);
-                          }}
-                        >
-                          <FaSignature className="button_view_file" /> Ký Hợp
-                          Đồng
-                        </button>
-                      )}
-                      {signature === null && (
-                        <button
-                          className="button_file_view"
-                          onClick={toggleFileWindow}
-                        >
-                          <FaFilePdf className="button_view_file" /> Xem Hợp
-                          Đồng
-                        </button>
-                      )}
-
-                      {gopay && (
-                        <button className="button_PayMent" onClick={Pay_Vnpay}>
-                          <img
-                            className="button_PayMent_img"
-                            src={"../../IconVNPAY.png"}
-                          />
-                          Đặt Cọc
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+            )}
           {signedPdfUrl !== null && (
             <div
               className="view_contract"

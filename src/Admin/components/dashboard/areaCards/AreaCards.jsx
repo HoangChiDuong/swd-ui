@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
+import numeral from "numeral";
 import AreaCard from "./AreaCard";
 import "./AreaCards.scss";
 
 const AreaCards = () => {
+    const data = useSelector((state) => state.cardAdmin.cardDetail);
     return (
         <section className="content-area-cards">
             <AreaCard
@@ -9,7 +12,7 @@ const AreaCards = () => {
                 percentFillValue={80}
                 cardInfo={{
                     title: "Doanh Thu",
-                    value: "3000000000000 đ",
+                    value: `${numeral(data?.totalMoney != null ? data.totalMoney : "0").format("0,0")} VNĐ`,
                 }}
             />
             <AreaCard
@@ -17,7 +20,7 @@ const AreaCards = () => {
                 percentFillValue={50}
                 cardInfo={{
                     title: "Hợp Đồng",
-                    value: "50",
+                    value: `${data?.contract}`,
 
                 }}
             />
@@ -26,7 +29,7 @@ const AreaCards = () => {
                 percentFillValue={40}
                 cardInfo={{
                     title: "Nhân viên",
-                    value: "20",
+                    value: `${data?.totalStaff}`,
 
                 }}
             />
