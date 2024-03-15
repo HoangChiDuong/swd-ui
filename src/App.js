@@ -22,6 +22,9 @@ import CreateProduct from "./Staff/components/CreateProduct";
 import { useSelector } from "react-redux";
 import ViewTask from "./Staff/components/ViewTask";
 import Contract from "./Admin/components/contract/Contract";
+import ManageHR from "./Admin/components/ManageHR/ManageHR";
+import ManageStaff from "./Admin/components/ManageStaff/ManageStaff";
+
 
 function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -59,7 +62,11 @@ function App() {
           )}
           {/* {(userAuth.Role === "AD") && ( */}
           <Route element={<BaseLayout />}>
-            <Route path="//admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/ManageHR" element={<ManageHR/>} />
+            <Route path="/admin/ManageStaff" element={<ManageStaff/>} />
+
+
             <Route path="/customer" element={<Customer />} />
             <Route path="/admin/contract" element={<Contract />} />
           </Route>

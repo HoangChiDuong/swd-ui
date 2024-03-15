@@ -15,11 +15,13 @@ const NewRequest = () => {
     status: "1",
   };
   useEffect(() => {
-    axios.post("https://localhost:7058/api/Request/GetRequestStatus",data)
-    .then((response) => {
-      console.log(response.data);
-     setQuoteData(response.data)
-    });
+    if (userAuth.Id !== "") {
+      axios
+        .post("https://localhost:7058/api/Request/GetRequestStatus", data)
+        .then((response) => {
+          setQuoteData(response.data);
+        });
+    }
   }, [userAuth.Id]);
  
   const GoProduct = (product) => {
