@@ -31,9 +31,9 @@ const Product = (props) => {
             <div className="product-container">
                 <div className="product-container-detail">
                     <Link to="#" className="product-container-detail-img">
-                        <img src={product.imagePath} alt="Product" style={{ width: '100%' }} />
+                        <img src={product.imagePath} alt="Product" style={{ width: '100%',height:'200px' }} />
                     </Link>
-                    <div className="info-wrap">
+                    <div className="info-wrap ">
                         <Link to="#" className="product-container-detail-title">
                             {product.productName}
                         </Link>

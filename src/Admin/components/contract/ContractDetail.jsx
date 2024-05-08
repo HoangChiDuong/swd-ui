@@ -54,9 +54,9 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
 
             page.drawImage(signatureImage, {
                 x: 400,
-                y: 80,
-                width: 130,
-                height: 130,
+                y: 20,
+                width: 90,
+                height: 90,
                 color: rgb(0, 0, 0),
             });
 

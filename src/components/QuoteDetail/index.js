@@ -144,7 +144,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
               </div>
             </div>
             <div className="quote_detail_dateCreate">
-              Ngày tạo : {quoteData.dateCreate}
+            Ngày tạo : {quoteData.dateCreate?.split('T')[0]}
             </div>
           </div>
           <div className="quote_detail_1">
@@ -327,7 +327,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
               </div>
             </div>
           )}
-          {signature === null && (
+          {quoteData.contracData.status === "3"  && (
             <button className="button_file_view" onClick={toggleFileWindow}>
               <FaFilePdf className="button_view_file" /> Xem Hợp Đồng
             </button>

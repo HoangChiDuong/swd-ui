@@ -117,7 +117,7 @@ function Header({ indexCart }) {
         navigate("/ProductByCate", { state: { id: 11 } });
         break;
       case "Liên Hệ":
-        window.location.href = "/desktop-screen";
+       
         break;
 
       default:

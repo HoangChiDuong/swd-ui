@@ -31,7 +31,7 @@ const StaffList = () => {
                             <h2>{item.userName}</h2>
                         </div>
                         <span>{item.email}</span>
-                        <span>{item.status === true ? "Đang rảnh" : "Đang Bận"}</span>
+                        <span>{item.status === "0" ? "Đang rảnh" : "Đang Bận"}</span>
                         <span>{item.phone}</span>
                         <span className="staff--todo">:</span>
                     </div>

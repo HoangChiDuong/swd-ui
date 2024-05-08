@@ -54,7 +54,7 @@ const Deposited = () => {
               <div className="quote_item_status">- {IsQuote.status}</div>
             </div>
             <div className="quote_item_dateCreate">
-              Ngày tạo : {IsQuote.dateCreate}
+              Ngày tạo : {IsQuote.dateCreate?.split('T')[0]}
             </div>
           </div>
           <div className="quote_item_2">

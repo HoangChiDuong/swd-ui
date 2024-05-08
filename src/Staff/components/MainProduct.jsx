@@ -75,7 +75,7 @@ const MainProducts = () => {
 
     const recordsPerPage = 8;
     // const Data = useSelector((state) => state.productList.products);
-    const totalPages = Math.ceil(Data.length / recordsPerPage);
+    const totalPages = Math.ceil(listProduct?.length / recordsPerPage);
     const firstIndex = (currentPage - 1) * recordsPerPage;
     const lastIndex = currentPage * recordsPerPage;
     const slicedProducts = listProduct?.slice(firstIndex, lastIndex);

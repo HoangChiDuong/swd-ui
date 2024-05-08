@@ -133,14 +133,14 @@ const Assignment = () => {
                             <div ><CgSandClock className="assign--icon" /></div>
                         </div>
                     );
-                } else if (row.status === "3") {
+                } else if (row.status === "4") {
                     return (
                         <div className="" >
                             <div ><FaFileContract style={{ fontSize: "35px", background: "blue", borderRadius: "50%", color: "#fff", padding: "5px" }} /></div>
                         </div>
                     );
                 }
-                else if (row.status === "4") {
+                else if (row.status === "5") {
                     return (
                         <div  >
                             <div ><LuCircleDollarSign style={{ fontSize: "35px", background: "green", borderRadius: "50%", color: "#fff" }} /></div>
