@@ -13,7 +13,7 @@ const ViewProductCate = () => {
   useEffect(() => {
     axios
       .get(
-        `https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${des}`
+        `https://localhost:7058/api/products/product-category?Idcategory=${des}`
       )
       .then((response) => {
         console.log(response.data);

@@ -67,7 +67,7 @@ const CreateContract = ({ setShow, tasks, setLoadApi }) => {
       };
       console.log(data, formData);
       const response = await axios.post(
-        "https://localhost:7058/api/Task/CreateContractStaff",
+        "https://localhost:7058/api/tasks",
         formData
       );
       if (response.data != null) {

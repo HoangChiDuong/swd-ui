@@ -16,7 +16,7 @@ export const listRequest = () => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/api/Request/GetAllRequest`, config);
+        const { data } = await axios.get(`https://localhost:7058/api/requests`, config);
 
         dispatch({ type: GET_ALL_REQUEST_SUCCESS, payload: data });
     } catch (error) {
@@ -45,7 +45,7 @@ export const confirmRequest = (requestId, staffId) => async (dispatch) => {
             },
         };
 
-        await axios.post(`https://localhost:7058/api/Request/ConfirmAppointment?requestId=${requestId}&staffId=${staffId}`, config);
+        await axios.post(`https://localhost:7058/api/requests/confirm-appointment?requestId=${requestId}&staffId=${staffId}`, config);
 
         dispatch({ type: CONFIRM_REQUEST_SUCCESS });
     } catch (error) {

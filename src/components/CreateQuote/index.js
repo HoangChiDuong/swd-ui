@@ -128,7 +128,7 @@ const CreateQuote = ({
         setShowLoad(true)
         axios
           .post(
-            "https://localhost:7058/api/Request/CreateRequest",
+            "https://localhost:7058/api/requests",
             CreateRequestModel,
             {
               headers: {

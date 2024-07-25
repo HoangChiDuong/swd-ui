@@ -13,7 +13,7 @@ const ViewTask = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:7058/api/Task/AllTaskByStaffId?staffId=${useAuth}`
+          `https://localhost:7058/api/tasks/staff?staffId=${useAuth}`
         );
         console.log(response.data);
         setTask(response.data); 

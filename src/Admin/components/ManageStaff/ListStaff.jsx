@@ -18,7 +18,7 @@ const ListStaff = () => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:7058/api/Admin/GetAllStaff`)
+      .get(`https://localhost:7058/api/staffs`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -30,7 +30,7 @@ const ListStaff = () => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:7058/api/Admin/GetAllHR`)
+      .get(`https://localhost:7058/api/staffs/managers`)
       .then((response) => {
         console.log(response.data);
         setHRList(response.data);
@@ -94,7 +94,7 @@ const ListStaff = () => {
     console.log(nameHR);
 
     axios
-      .put(`https://localhost:7058/api/Admin/AddStaff`, formData)
+      .post(`https://localhost:7058/api/staffs/staff`, formData)
       .then((response) => {
         console.log(response.data);
         handleCloseFormAddStaff();

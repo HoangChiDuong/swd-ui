@@ -6,7 +6,7 @@ export const loginUser = async (user, dispatch, navigate, setShowLogin) => {
     dispatch(loginStart());
 
     try {
-        const res = await axios.post("https://localhost:7058/api/User/login", user);
+        const res = await axios.post("https://localhost:7058/api/users/login", user);
 
 
         if (res.status === 200) {
@@ -53,7 +53,7 @@ export const logOut = async (dispatch, navigate) => {
                 Authorization: `Bearer ${accessToken}`,
             },
         };
-        await axios.post("https://localhost:7058/api/User/logout", {}, config
+        await axios.post("https://localhost:7058/api/users/logout", {}, config
         );
         dispatch(logoutSuccess());
         localStorage.removeItem('jwtToken');

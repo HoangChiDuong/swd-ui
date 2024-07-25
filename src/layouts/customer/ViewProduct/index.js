@@ -31,7 +31,7 @@ const ViewProduct = () => {
   useEffect(() => {
     axios
       .get(
-        `https://localhost:7058/api/Poduct/GetProduct?Idproduct=${Idproduct}`
+        `https://localhost:7058/api/products/product-user?Idproduct=${Idproduct}`
       )
       .then((response) => {
         console.log(response.data);
@@ -70,7 +70,7 @@ const ViewProduct = () => {
       setShowLoad(true);
       axios
         .post(
-          `https://localhost:7058/api/Cart/AddToCart?userId=${userAuth.Id}&productId=${Idproduct}`,
+          `https://localhost:7058/api/carts?userId=${userAuth.Id}&productId=${Idproduct}`,
           config
         )
         .then((response) => {

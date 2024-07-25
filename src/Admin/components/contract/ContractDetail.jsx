@@ -23,8 +23,8 @@ const ContractDetail = ({ contractFile, contractId, onClose }) => {
 
         console.log(formData)
 
-        axios.post(
-            `https://localhost:7058/api/Admin/ConfirmContract`, formData
+        axios.put(
+            `https://localhost:7058/api/contracts`, formData
         )
             .then((response) => {
                 if (response !== null) {

@@ -40,7 +40,7 @@ const HomePage = () => {
   useEffect(() => {
     axios
       .get(
-        `https://localhost:7058/api/Poduct/GetProductCategory?Idcategory=${Idcategory}`
+        `https://localhost:7058/api/products/product-category?Idcategory=${Idcategory}`
       )
       .then((response) => {
         console.log(response.data);

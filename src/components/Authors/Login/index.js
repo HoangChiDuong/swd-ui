@@ -69,7 +69,7 @@ const Login = ({ setShowLogin }) => {
       picture: googleData.picture,
     };
     axios
-      .post(`https://localhost:7058/api/User/LoginGoogle`, dataCheck)
+      .post(`https://localhost:7058/api/users/login-google`, dataCheck)
       .then((res) => {
         console.log(res.data);
         loginUser(res.data, dispatch, navigate, setShowLogin);

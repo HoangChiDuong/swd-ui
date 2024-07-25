@@ -17,7 +17,7 @@ const WaitSurvey = () => {
   useEffect(() => {
     if (userAuth.Id !== "") {
       axios
-        .post("https://localhost:7058/api/Request/GetRequestStatus", data)
+      .get(`https://localhost:7058/api/requests/status?Id=${data.id}&Status=${data.status}`)
         .then((response) => {
           setQuoteData(response.data);
         });

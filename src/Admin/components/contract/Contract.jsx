@@ -12,7 +12,7 @@ const Contract = () => {
 
     useEffect(() => {
         axios.get(
-            `https://localhost:7058/api/Admin/GetContractAdmin`
+            `https://localhost:7058/api/contracts`
         )
             .then((response) => {
                 console.log(response.data);

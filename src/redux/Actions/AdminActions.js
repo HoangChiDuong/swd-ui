@@ -13,7 +13,7 @@ export const getCardAdmin = () => async (dispatch) => {
             },
         };
         const { data } = await axios.get(
-            `https://localhost:7058/api/Admin/GetTotalMoney`,
+            `https://localhost:7058/api/admins/total-money`,
             config
         );
         dispatch({ type: CARD_ADMIN_SUCCESS, payload: data });
@@ -42,7 +42,7 @@ export const getMonthAdmin = () => async (dispatch) => {
             },
         };
         const { data } = await axios.get(
-            `https://localhost:7058/api/Admin/GetRervenueByYear`,
+            `https://localhost:7058/api/admins/rervenue-by-year`,
             config
         );
         dispatch({ type: GET_MONTH_SUCCESS, payload: data });
@@ -72,7 +72,7 @@ export const getNewContract = () => async (dispatch) => {
             },
         };
         const { data } = await axios.get(
-            `https://localhost:7058/api/Admin/Get5Contract`,
+            `https://localhost:7058/api/admins/five-contact`,
             config
         );
         dispatch({ type: GET_CONTRACT_SUCCESS, payload: data });

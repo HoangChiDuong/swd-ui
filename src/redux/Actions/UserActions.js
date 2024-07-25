@@ -17,7 +17,7 @@ export const listStaff = (userId) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/api/User/GetAllStaffById/${userId}`, config);
+        const { data } = await axios.get(`https://localhost:7058/api/staffs/staff-manager?id_staff=${userId}`, config);
 
         dispatch({ type: LIST_STAFF_SUCCESS, payload: data });
     } catch (error) {
@@ -48,7 +48,7 @@ export const infoUser = (userId) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/api/User/UserInfo?userId=${userId}`, config);
+        const { data } = await axios.get(`https://localhost:7058/api/users/user-info?user_id=${userId}`, config);
 
         dispatch({ type: USER_INFO_SUCCESS, payload: data });
     } catch (error) {
@@ -81,7 +81,7 @@ export const listStaffStatus = (userId) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/api/User/GetAllStaffByStatus/${userId}`, config);
+        const { data } = await axios.get(`https://localhost:7058/api/staffs/staff-status-manager?id_manager=${userId}`, config);
 
         dispatch({ type: STAFF_STATUS_SUCCESS, payload: data });
     } catch (error) {

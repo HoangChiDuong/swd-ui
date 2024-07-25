@@ -17,7 +17,7 @@ export const listProducts = () => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get(`https://localhost:7058/GetAllProduct`, config);
+        const { data } = await axios.get(`https://localhost:7058/api/products`, config);
 
 
         dispatch({ type: LIST_PRODUCT_SUCCESS, payload: data });

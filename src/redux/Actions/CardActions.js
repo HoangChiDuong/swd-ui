@@ -15,7 +15,7 @@ export const addCart = (userid) => async (dispatch) => {
   try {
     dispatch({ type: ADD_CARD_REQUEST });
 
-    await axios.get(`https://localhost:7058/api/Cart/LoadAdd`);
+    await axios.get(`https://localhost:7058/api/carts/load`);
 
     dispatch({ type: ADD_CARD_SUCCESS });
   } catch (error) {
@@ -50,7 +50,7 @@ export const getCard = (userid) => async (dispatch) => {
 
     if (userid !== null) {
       const {data} = await axios.get(
-        `https://localhost:7058/api/Cart/GetCartDetails?userId=${userid}`,
+        `https://localhost:7058/api/carts?userId=${userid}`,
         config
       );
       console.log(data);
@@ -87,7 +87,7 @@ export const deleteCart = (productId) => async (dispatch) => {
     };
 
     await axios.delete(
-      `https://localhost:7058/api/Cart/DeleteCartDetail?cartDetailId=${productId}`,
+      `https://localhost:7058/api/carts?cartDetailId=${productId}`,
       config
     );
 

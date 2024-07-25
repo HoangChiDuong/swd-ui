@@ -16,7 +16,7 @@ const ListHR = () => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:7058/api/Admin/GetAllHR`)
+      .get(`https://localhost:7058/api/staffs/managers`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -71,7 +71,7 @@ const ListHR = () => {
     console.log(formData);
 
     axios
-      .put(`https://localhost:7058/api/Admin/AddHR`, formData)
+      .post(`https://localhost:7058/api/staffs/manager`, formData)
       .then((response) => {
         console.log(response.data);
         handleCloseFormAddStaff();

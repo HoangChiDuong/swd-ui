@@ -35,7 +35,7 @@ const QuoteDetail = ({ quoteData, setShowDetailQuote }) => {
       formData.append("ContractFile", contractFileapi);
 
       const response = await axios.post(
-        "https://localhost:7058/api/Payment/Pay",
+        "https://localhost:7058/api/payments",
         formData
       );
       if (response !== null) {
